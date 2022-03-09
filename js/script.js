@@ -1,4 +1,9 @@
 const targetWords = [
+    "falco",
+    "sasha"
+];
+
+const wordBank = [
     "armin",
     "hange",
     "conny",
@@ -54,11 +59,8 @@ const targetWords = [
     "helos",
 
     "titan"
-]
-const wordBank = [
-    "falco",
-    "sasha"
 ];
+
 const WORD_LENGTH = 5;
 const FLIP_ANIMATION_DURATION = 500;
 const DANCE_ANIMATION_DURATION = 500;
