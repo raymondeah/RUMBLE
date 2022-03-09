@@ -35,7 +35,7 @@ body {
 
 .title {
     font-family: 'Cloister Black';
-    font-size: 2.75em;
+    font-size: 5vh;
     display: flex;
     height: 7.5vh;
     align-items: center;
@@ -111,6 +111,7 @@ body {
     justify-content: center;
     align-content: center;
     flex-grow: 1;
+    flex-shrink: 1;
     grid-template-columns: repeat(5, minmax(2em, 4em));
     grid-template-rows: repeat(6, minmax(2em, 4em)); 
     gap: .3em;
