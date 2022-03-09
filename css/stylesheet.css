@@ -250,7 +250,7 @@ body {
     opacity: 0;
 }
 
-.sidemenu {
+/* .sidemenu {
     position: absolute;
     top: 0px;
     width: 100%;
@@ -258,17 +258,14 @@ body {
     background-color: hsl(240, 3%, 7%);
     text-align: left;
     text-transform: none;
-    /* font-size: 13px; */
     visibility: hidden;
     opacity: 1;
-    /* border: solid red 5px; */
 }
 
 .menucontents {
     margin: auto;
     width: min(400px, 100%);
     color: white;
-    /* border: solid blue 5px; */
 }
 
 .instructions-header {
@@ -290,7 +287,6 @@ body {
 }
 
 .exampleCell {
-    /* background-color: var(--background); */
     width: 1.25em;
     height: 1.25em;
     display: inline-block;
@@ -317,4 +313,4 @@ body {
 
 a {
     color: lightskyblue;
-}
+} */
