@@ -1,1 +1,1 @@
-# Check it out [here!](https://rumble.netlify.app/)
+# [](https://rumble.netlify.app/)
