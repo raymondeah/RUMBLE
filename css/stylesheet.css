@@ -53,7 +53,7 @@ body {
     justify-content: center;
     margin-left: 2%;
     margin-right: 2%;
-    margin-bottom: 1%;
+    margin-bottom: 2%;
 }
 
 .key {
@@ -112,11 +112,11 @@ body {
     align-content: center;
     flex-grow: 1;
     flex-shrink: 1;
-    grid-template-columns: repeat(5, minmax(2em, 4em));
-    grid-template-rows: repeat(6, minmax(2em, 4em)); 
+    grid-template-columns: repeat(5, minmax(1em, 4em));
+    grid-template-rows: repeat(6, minmax(1em, 4em)); 
     gap: .3em;
-    margin-bottom: 2%;
-    margin-top: 2%;
+    margin-bottom: 3%;
+    margin-top: 3%;
  }
  
  .tile {
