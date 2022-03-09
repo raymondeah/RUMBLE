@@ -48,12 +48,12 @@ body {
     height: 30%;
     display: grid;
     grid-template-columns: repeat(20, minmax(0.5em, 1.25em));
-    grid-auto-rows: minmax(3em, 33%);
+    grid-auto-rows: minmax(1em, 33%);
     gap: .35em;
     justify-content: center;
     margin-left: 2%;
     margin-right: 2%;
-    margin-bottom: 2%;
+    margin-bottom: 1%;
 }
 
 .key {
@@ -111,11 +111,11 @@ body {
     justify-content: center;
     align-content: center;
     flex-grow: 1;
-    grid-template-columns: repeat(5, 4em);
-    grid-template-rows: repeat(6, 4em); 
+    grid-template-columns: repeat(5, 3.75em);
+    grid-template-rows: repeat(6, 3.75em); 
     gap: .3em;
-    margin-bottom: 1em;
-    margin-top: 1em;
+    margin-bottom: 2%;
+    margin-top: 2%;
  }
  
  .tile {
