@@ -48,8 +48,8 @@ body {
     height: 30%;
     display: grid;
     grid-template-columns: repeat(20, minmax(0.5em, 1.25em));
-    /* grid-auto-rows: min(3.75em, 33%); */
-    grid-auto-rows: minmax(1em, 33%);
+    grid-auto-rows: min(3.75em, 30%);
+    /* grid-auto-rows: minmax(1em, 33%); */
     gap: .35em;
     justify-content: center;
     margin-left: 2%;
