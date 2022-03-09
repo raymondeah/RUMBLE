@@ -1,0 +1,36 @@
+/* * {
+    border: 2px solid red;
+} */
+
+html, body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.head {
+    height: 5vh;
+    border: 2px solid red;
+}
+
+.title {
+    margin: 0;
+    padding: 0;
+    height: 5vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid black;
+}
+
+.grid {
+    height: 60%;
+    border: 2px solid blue;
+}
+
+.keyboard {
+    height: 30%;
+    border: 2px solid green;
+}
