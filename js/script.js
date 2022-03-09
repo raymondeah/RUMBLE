@@ -131,6 +131,7 @@ function pressKey(key) {
 }
 
 function deleteKey() {
+    console.log('del');
     const activeTiles = getActiveTiles();
     const lastTile = activeTiles[activeTiles.length - 1];
     if (lastTile == null) return;
@@ -140,6 +141,7 @@ function deleteKey() {
 }
 
 function submitGuess() {
+    console.log('ent');
     const activeTiles = [...getActiveTiles()];
     if (activeTiles.length !== WORD_LENGTH) {
         showAlert("Not enough letters");
@@ -168,7 +170,7 @@ function flipTiles(tiles, guess) {
     for (let i = 0; i < tiles.length; i++) {
         const tile = tiles[i];
         const letter = tile.dataset.letter;
-        console.log(letter, ' ', targetWord[i]);
+        // console.log(letter, ' ', targetWord[i]);
         const key = keyboard.querySelector(`[data-key="${letter}"i]`);
 
         if (targetWord[i] === letter) {
