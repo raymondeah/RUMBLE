@@ -114,8 +114,8 @@ body {
     align-content: center;
     flex-grow: 1;
     flex-shrink: 1;
-    grid-template-columns: repeat(5, min(4em, 14vw));
-    grid-template-rows: repeat(6, min(4em, 14vw)); 
+    grid-template-columns: repeat(5, min(4em, 10vw));
+    grid-template-rows: repeat(6, min(4em, 10vw)); 
     gap: .3em;
     margin-bottom: 1%;
     margin-top: 1%;
