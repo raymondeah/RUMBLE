@@ -1,19 +1,10 @@
 -create wordbank
-
--add header
--add random word picking
+-add random word picking and daily reset
 -add instructions
 -add settings
+-fix tile shaking (entire row should shake)
+-fix flip animation
+
 -add custom win message at each row
 -add stats using local storage
-
-
--FIX STYLING (try to take from old styling because responsive layout is not good on mobile)
--fix tile shaking (entire row should shake)
--fix coloring algorithm (duplicates)
-	-halfway done:
-		-algorithm is fixed, now need to reimplement flipping animation
--fix keyboard styling:
-	-keys should be taller
-	-keyboard size should be fixed
-
+-consider changing style (taller keyboard on mobile, shrinking)
