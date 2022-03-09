@@ -131,7 +131,6 @@ function pressKey(key) {
 }
 
 function deleteKey() {
-    console.log('del');
     const activeTiles = getActiveTiles();
     const lastTile = activeTiles[activeTiles.length - 1];
     if (lastTile == null) return;
@@ -141,7 +140,6 @@ function deleteKey() {
 }
 
 function submitGuess() {
-    console.log('ent');
     const activeTiles = [...getActiveTiles()];
     if (activeTiles.length !== WORD_LENGTH) {
         showAlert("Not enough letters");
@@ -161,10 +159,65 @@ function submitGuess() {
 
     stopInteraction();
     //activeTiles.forEach((...params) => flipTile(...params, guess));
-    flipTiles(activeTiles, guess);
+    let s = flipTiles(activeTiles);
+
+    for (let i = 0; i < s.length; i++) {
+        flipTile(s[i], guess, activeTiles);
+    }
+    //s.forEach(() => flipTile(guess, activeTiles));
+
+    //flipTiles(activeTiles, guess);
 }
 
-function flipTiles(tiles, guess) {
+// function flipTiles(tiles, guess) {
+//     let withoutCorrect = targetWord;
+
+//     for (let i = 0; i < tiles.length; i++) {
+//         const tile = tiles[i];
+//         const letter = tile.dataset.letter;
+//         // console.log(letter, ' ', targetWord[i]);
+//         const key = keyboard.querySelector(`[data-key="${letter}"i]`);
+
+//         if (targetWord[i] === letter) {
+//             tile.dataset.state = "correct";
+//             key.classList.add("correct");
+//             withoutCorrect = withoutCorrect.replace(letter, '');
+//         }
+//     }
+
+//     for (let i = 0; i < tiles.length; i++) {
+//         const tile = tiles[i];
+//         const letter = tile.dataset.letter;
+//         const key = keyboard.querySelector(`[data-key="${letter}"i]`);
+
+//         if (tile.dataset.state === "correct") {
+//             continue;
+//         } else if (withoutCorrect.includes(letter)) {
+//             tile.dataset.state = "wrong-location";
+//             key.classList.add("wrong-location");
+//             withoutCorrect = withoutCorrect.replace(letter, '');
+//         }
+//     }
+
+//     for (let i = 0; i < tiles.length; i++) {
+//         const tile = tiles[i];
+//         const letter = tile.dataset.letter;
+//         const key = keyboard.querySelector(`[data-key="${letter}"i]`);
+
+//         if (tile.dataset.state === "correct" || tile.dataset.state === "wrong-location") {
+//             continue;
+//         } else {
+//             tile.dataset.state = "wrong";
+//             key.classList.add("wrong");
+//         }
+//     }
+
+//     startInteraction();
+//     checkWinLose(guess, tiles);
+// }
+
+function flipTiles(tiles) {
+    let states = [];
     let withoutCorrect = targetWord;
 
     for (let i = 0; i < tiles.length; i++) {
@@ -174,9 +227,10 @@ function flipTiles(tiles, guess) {
         const key = keyboard.querySelector(`[data-key="${letter}"i]`);
 
         if (targetWord[i] === letter) {
-            tile.dataset.state = "correct";
-            key.classList.add("correct");
+            states.push([tile, key, "correct", i]);
             withoutCorrect = withoutCorrect.replace(letter, '');
+        } else {
+            states.push([tile, key, "", i]);
         }
     }
 
@@ -185,11 +239,10 @@ function flipTiles(tiles, guess) {
         const letter = tile.dataset.letter;
         const key = keyboard.querySelector(`[data-key="${letter}"i]`);
 
-        if (tile.dataset.state === "correct") {
+        if (states[i][2] === "correct") {
             continue;
         } else if (withoutCorrect.includes(letter)) {
-            tile.dataset.state = "wrong-location";
-            key.classList.add("wrong-location");
+            states[i][2] = "wrong-location";
             withoutCorrect = withoutCorrect.replace(letter, '');
         }
     }
@@ -199,16 +252,14 @@ function flipTiles(tiles, guess) {
         const letter = tile.dataset.letter;
         const key = keyboard.querySelector(`[data-key="${letter}"i]`);
 
-        if (tile.dataset.state === "correct" || tile.dataset.state === "wrong-location") {
+        if (states[i][2] === "correct" || states[i][2] === "wrong-location") {
             continue;
         } else {
-            tile.dataset.state = "wrong";
-            key.classList.add("wrong");
+            states[i][2] = "wrong";
         }
     }
 
-    startInteraction();
-    checkWinLose(guess, tiles);
+    return states;
 }
 
 /*
@@ -217,19 +268,22 @@ function flipTiles(tiles, guess) {
 3. reset target word
 */
 
-function flipTile(tile, index, array, guess) {
-    const letter = tile.dataset.letter;
-    const key = keyboard.querySelector(`[data-key="${letter}"i]`);
+function flipTile(states, guess, activeTiles) {
+    const tile = states[0];
+    const key = states[1];
+    const operation = states[2];
+    const index = states[3];
+
     setTimeout(() => {
         tile.classList.add("flip");
     }, index * FLIP_ANIMATION_DURATION / 2);
 
     tile.addEventListener("transitionend", () => {
         tile.classList.remove("flip");
-        if (targetWord[index] === letter) {
+        if (operation === "correct") {
             tile.dataset.state = "correct";
             key.classList.add("correct");
-        } else if (targetWord.includes(letter)) {
+        } else if (operation == "wrong-location") {
             tile.dataset.state = "wrong-location";
             key.classList.add("wrong-location");
         } else {
@@ -237,10 +291,10 @@ function flipTile(tile, index, array, guess) {
             key.classList.add("wrong");
         }
 
-        if (index === array.length - 1) {
+        if (index === WORD_LENGTH - 1) {
             tile.addEventListener("transitionend", () => {
                 startInteraction();
-                checkWinLose(guess, array);
+                checkWinLose(guess, activeTiles);
             }, { once: true });
         }
     }, { once: true});
@@ -309,3 +363,6 @@ function danceTiles(tiles) {
         }, index * DANCE_ANIMATION_DURATION / 5);
     });
 }
+
+
+/////////////////////////////////////////////////////////////
