@@ -35,22 +35,27 @@ body {
 }
 
 .instr {
+    position: absolute;
+    top: 2.5vh;
     cursor: pointer;
     float: left;
-    margin-left: 1%;
+    margin-left: 0.5em;
     background-color: transparent;
     border: none;
-    font-size: 2em;
+    font-size: 2.5vh;
     color: white;
 }
 
 .settings {
+    position: absolute;
+    top: 2.5vh;
+    right: 0%;
     cursor: pointer;
-    float: right;
-    margin-right: 1%;
+    margin-right: 0.5em;
     background-color: transparent;
+    justify-content: center;
     border: none;
-    font-size: 2em;
+    font-size: 2.5vh;
     color: white;
 }
 
@@ -296,10 +301,6 @@ body {
     margin-top: 2%;
 }
 
-.title2 {
-    font-family: Arial, Helvetica, sans-serif;
-}
-
 .text {
     margin-left: 5%;
     margin-right: 5%;
@@ -322,13 +323,14 @@ body {
 
 .xbuttonsidemenu {
     position: absolute;
-    top: 0.5%;
-    right: calc(50% - 180px);
+    /* top: 1%; */
+    right: calc(50% - min(200px, 50%));
+    margin-right: 0.65em;
     cursor: pointer;
     background-color: transparent;
     border: none;
-    font-family: monospace;
-    font-size: 18px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1em;
     color: white;
 }
 
