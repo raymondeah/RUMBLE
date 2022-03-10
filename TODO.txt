@@ -1,6 +1,5 @@
--add instrucions icon to header
--show and delete instructions on clicking
--add settings
+-add instructions and settings icons to header
+-create settings page
 -fix tile shaking (entire row should shake)
 -create wordbank
 -add random word picking and daily reset
@@ -9,5 +8,5 @@
 -add custom win message at each row
 -add stats using local storage
 -menus need to move up/down while fading in/out
--consider changing style (taller keyboard on mobile, shrinking)
--code cleanup/refactoring
+-documentation and refactoring
+-tests

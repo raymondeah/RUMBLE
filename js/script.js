@@ -334,6 +334,7 @@ function shakeTiles(tiles) {
 
 function checkWinLose(guess, tiles) {
     if (guess === targetWord) {
+        //genius magnificent impressive splendid great phew
         showAlert("You Win", 3000);
         danceTiles(tiles);
         stopInteraction();
