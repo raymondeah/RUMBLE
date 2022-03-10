@@ -31,6 +31,27 @@ body {
 .head {
     height: 7.5vh;
     background-color: black;
+    border-bottom: solid hsl(240, 2%, 23%) 1px;
+}
+
+.instr {
+    cursor: pointer;
+    float: left;
+    margin-left: 1%;
+    background-color: transparent;
+    border: none;
+    font-size: 2em;
+    color: white;
+}
+
+.settings {
+    cursor: pointer;
+    float: right;
+    margin-right: 1%;
+    background-color: transparent;
+    border: none;
+    font-size: 2em;
+    color: white;
 }
 
 .title {
@@ -41,7 +62,7 @@ body {
     align-items: center;
     justify-content: center;
     color: white;
-    border-bottom: solid hsl(240, 2%, 23%) 1px;
+    /* border-bottom: solid hsl(240, 2%, 23%) 1px; */
 }
 
 .keyboard {
@@ -258,7 +279,7 @@ body {
     background-color: hsl(240, 3%, 7%);
     text-align: left;
     text-transform: none;
-    visibility: hidden;
+    /* visibility: hidden; */
     opacity: 1;
 }
 
@@ -313,4 +334,14 @@ body {
 
 a {
     color: lightskyblue;
+}
+
+@keyframes hide {
+    from {opacity: 1;}
+    to {opacity: 0; visibility: hidden;}
+}
+
+@keyframes show {
+    from {opacity: 0;}
+    to {opacity: 1; visibility: visible;}
 }

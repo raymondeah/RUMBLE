@@ -366,3 +366,19 @@ function danceTiles(tiles) {
 
 
 /////////////////////////////////////////////////////////////
+
+function hideHelp() {
+    const box = document.getElementById("help");
+    box.style.animationName = 'hide'
+    box.style.animationDuration = '250ms'
+    box.style.animationTimingFunction = 'ease-in'
+    box.style.animationFillMode = 'forwards';
+}
+
+function showHelp() {
+    const box = document.getElementById("help");
+    box.style.animationName = 'show'
+    box.style.animationDuration = '250ms'
+    box.style.animationTimingFunction = 'ease-out'
+    box.style.animationFillMode = 'forwards';
+}

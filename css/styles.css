@@ -212,3 +212,8 @@ body {
 .alert.hide {
     opacity: 0;
 }
+
+@keyframes onlyHide {
+    from {opacity: 1;}
+    to {opacity: 0; visibility: hidden;}
+}

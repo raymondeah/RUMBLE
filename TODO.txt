@@ -8,5 +8,6 @@
 
 -add custom win message at each row
 -add stats using local storage
+-menus need to move up/down while fading in/out
 -consider changing style (taller keyboard on mobile, shrinking)
 -code cleanup/refactoring
