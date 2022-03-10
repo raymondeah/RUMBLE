@@ -2,7 +2,6 @@
     margin: 0;
     padding: 0;
     /* font-family: "Imaginary Friend BB"; */
-    /* border: 2px solid red; */
 }
 
 @font-face {
@@ -74,7 +73,8 @@ body {
 }
 
 .keyboard {
-    height: 30%;
+    height: min(11.95em, 30%);
+    /* height: 30%; */
     display: grid;
     align-content: end;
     grid-template-columns: repeat(20, minmax(0.5em, 1.25em));
@@ -288,7 +288,7 @@ body {
     background-color: hsl(240, 3%, 7%);
     text-align: left;
     text-transform: none;
-    /* visibility: hidden; */
+    visibility: hidden;
     opacity: 1;
 }
 
