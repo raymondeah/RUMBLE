@@ -367,6 +367,14 @@ function danceTiles(tiles) {
 
 /////////////////////////////////////////////////////////////
 
+function showHelp() {
+    const box = document.getElementById("help");
+    box.style.animationName = 'show'
+    box.style.animationDuration = '250ms'
+    box.style.animationTimingFunction = 'ease-out'
+    box.style.animationFillMode = 'forwards';
+}
+
 function hideHelp() {
     const box = document.getElementById("help");
     box.style.animationName = 'hide'
@@ -375,9 +383,17 @@ function hideHelp() {
     box.style.animationFillMode = 'forwards';
 }
 
-function showHelp() {
-    const box = document.getElementById("help");
+function showSettings() {
+    const box = document.getElementById("settings");
     box.style.animationName = 'show'
+    box.style.animationDuration = '250ms'
+    box.style.animationTimingFunction = 'ease-in'
+    box.style.animationFillMode = 'forwards';
+}
+
+function hideSettings() {
+    const box = document.getElementById("settings");
+    box.style.animationName = 'hide'
     box.style.animationDuration = '250ms'
     box.style.animationTimingFunction = 'ease-out'
     box.style.animationFillMode = 'forwards';
