@@ -288,7 +288,7 @@ body {
     background-color: hsl(240, 3%, 7%);
     text-align: left;
     text-transform: none;
-    visibility: hidden;
+    /* visibility: hidden; */
     opacity: 1;
 }
 
