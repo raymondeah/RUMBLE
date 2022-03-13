@@ -29,43 +29,49 @@ body {
 }
 
 .head {
-    height: 7.5vh;
+    height: 50px;
     background-color: black;
     border-bottom: solid hsl(240, 2%, 23%) 1px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
 .instr {
-    position: absolute;
-    top: 2.5vh;
+    /* position: absolute;
+    top: 2.5vh; */
+    /* float: left; */
     cursor: pointer;
-    float: left;
-    margin-left: 0.5em;
+    margin-left: 1em;
     background-color: transparent;
+    filter: invert(1);
     border: none;
-    font-size: 2.5vh;
+    /* font-size: em; */
+    width: 25px;
     color: white;
     user-select: none;
 }
 
 .settings {
-    position: absolute;
-    top: 2.5vh;
-    right: 0%;
+    /* position: absolute;
+    top: 2.5vh; */
+    /* right: 0%; */
     cursor: pointer;
-    margin-right: 0.5em;
+    margin-right: 1em;
     background-color: transparent;
-    justify-content: center;
+    filter: invert(1);
     border: none;
-    font-size: 2.5vh;
+    width: 21px;
+    /* font-size: 1.5em; */
     color: white;
     user-select: none;
 }
 
 .title {
     font-family: 'Cloister Black';
-    font-size: 5vh;
+    font-size: 2.25em;
     display: flex;
-    height: 7.5vh;
+    height: 50px;
     align-items: center;
     justify-content: center;
     color: white;
@@ -84,7 +90,7 @@ body {
     justify-content: center;
     margin-left: 2%;
     margin-right: 2%;
-    margin-bottom: 2%;
+    margin-bottom: min(10px, 2%);
 }
 
 .key {
@@ -112,9 +118,10 @@ body {
     grid-column: span 3;
 }
 
-.key > svg {
-    width: 1.25em;
-    height: 1.25em;
+.del {
+    fill: white;
+    background-color: transparent;
+    width: 1.5em;
 }
 
 .key:hover, .key:focus {
@@ -288,7 +295,7 @@ body {
     background-color: hsl(240, 3%, 7%);
     text-align: left;
     text-transform: none;
-    /* visibility: hidden; */
+    visibility: hidden;
     opacity: 1;
 }
 
@@ -300,7 +307,7 @@ body {
     background-color: hsl(240, 3%, 7%);
     text-align: left;
     text-transform: none;
-    /* visibility: hidden; */
+    visibility: hidden;
     opacity: 1;
 }
 
