@@ -388,7 +388,7 @@ function showSettings() {
     const box = document.getElementById("settings");
     box.style.animationName = 'show'
     box.style.animationDuration = '250ms'
-    box.style.animationTimingFunction = 'ease-in'
+    box.style.animationTimingFunction = 'ease-out'
     box.style.animationFillMode = 'forwards';
 }
 

@@ -13,7 +13,7 @@
     <div class="head">
         <input type="button" class="instr" value="?" onClick="showHelp();"></input>
         <h1 class="title">Rumble</h1>
-        <input type="button" class="settings" value="S" onClick="showSettings;"></input>
+        <input type="button" class="settings" value="S" onClick="showSettings();"></input>
     </div>
     <div data-alert-container class="alert-container">
         
@@ -148,17 +148,30 @@
     </div>
 
     <!-- SETTINGS -->
-    <!-- <div id="settings" class="sidemenu">
+    <div id="settings" class="sidemenux">
         <div class="menucontents">
             <input type="button" class="xbuttonsidemenu" value="X" onClick="hideSettings();"></input>
             <div>
                 <H4 class="instructions-header">SETTINGS</H4>
-                <div class="text">
-                    Feedback
-                </div>>
+                <div class="text" style="font-size: 1em; border-bottom: 1px solid hsl(240, 2%, 23%);">
+                    <br>Dark Theme
+                    <label class="switch" style="float: right;">
+                        <input type="checkbox">
+                        <span class="slider round"></span>
+                    </label>
+                    <br><br>
+                </div>
+                <div class="text" style="font-size: 1em; border-bottom: 1px solid hsl(240, 2%, 23%);">
+                    <br>Feedback
+                    <a href="mailto:eah.r@northeastern.edu" style="float: right;" target="_blank">Email</a><br><br>
+                </div>
+                <div class="text" style="font-size: 1em;">
+                    <br>Developed by
+                    <a href="https://raymondeah.github.io/" style="float: right;" target="_blank">Ray Eah</a>
+                </div>
             </div>
         </div>
-    </div> -->
+    </div>
 </body>
 </body>
 </html>
