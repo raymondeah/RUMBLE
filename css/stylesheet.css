@@ -154,8 +154,8 @@ body {
     grid-template-columns: repeat(5, min(4em, 8vh, 16vw));
     grid-template-rows: repeat(6, min(4em, 8vh, 16vw)); 
     gap: .3em;
-    margin-bottom: 1%;
-    margin-top: 1%;
+    margin-bottom: 0.5%;
+    margin-top: 0.5%;
  }
  
  .tile {
