@@ -1,1 +1,1 @@
-# [rumble.netlify.app/](https://rumble.netlify.app/)
+# [wordleaot.com](https://wordleaot.com/)
