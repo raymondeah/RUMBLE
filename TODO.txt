@@ -1,12 +1,13 @@
--add instructions and settings icons to header
--create settings page
+-add dark theme
 -fix tile shaking (entire row should shake)
 -create wordbank
 -add random word picking and daily reset
--fix bug with svg clicking
 
 -add custom win message at each row
 -add stats using local storage
 -menus need to move up/down while fading in/out
+-puzzle number in bottom right of settings
 -documentation and refactoring
 -tests
+
+-bug in mobile chrome when opening new tab in group
