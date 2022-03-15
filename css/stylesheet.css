@@ -150,8 +150,8 @@ body {
     align-content: center;
     flex-grow: 1;
     flex-shrink: 1;
-    grid-template-columns: repeat(5, min(4em, 8vh, 16vw, 15%));
-    grid-template-rows: repeat(6, min(4em, 8vh, 16vw, 18%)); 
+    grid-template-columns: repeat(5, min(4em, 8vh, 16vw));
+    grid-template-rows: repeat(6, min(4em, 8vh, 16vw));
     gap: .3em;
     margin-bottom: 1%;
     margin-top: 1%;

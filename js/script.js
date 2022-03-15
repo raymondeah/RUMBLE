@@ -333,15 +333,19 @@ function shakeTiles(tiles) {
 }
 
 function checkWinLose(guess, tiles) {
+    const remainingTiles = guessGrid.querySelectorAll(":not([data-letter])");
+    const currRow = 6 - (remainingTiles.length / WORD_LENGTH);
+    const winMessages = ['genius', 'magnificent', 'impressive', 'splendid', 'great', 'phew'];
+
     if (guess === targetWord) {
         //genius magnificent impressive splendid great phew
-        showAlert("You Win", 3000);
+        showAlert(winMessages[currRow - 1], 3000);
         danceTiles(tiles);
         stopInteraction();
         return;
     }
 
-    const remainingTiles = guessGrid.querySelectorAll(":not([data-letter])");
+    
     if (remainingTiles.length === 0) {
         showAlert(targetWord.toUpperCase(), null);
         stopInteraction();

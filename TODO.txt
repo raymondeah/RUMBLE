@@ -1,13 +1,20 @@
--add dark theme
--fix tile shaking (entire row should shake)
--create wordbank
--add random word picking and daily reset
-
--add custom win message at each row
--add stats using local storage
--menus need to move up/down while fading in/out
--puzzle number in bottom right of settings
--documentation and refactoring
--tests
+-daily reset new word
+-stats/save game state using local storage
+-dark theme
+-wordbank
+-puzzle number in settings page
+-tile shaking (entire row should shake)
+-new menu transitions (slide up/down while fading in/out)
+-documentation/refactoring
+-testing
 
 -bug in mobile chrome when opening new tab in group
+
+-LOCAL STORAGE:
+-grid container (html)
+-keyboard container (html)
+
+-number of games played (int)
+-number of games won (int)
+-length of current streak (int)
+-guess distribution (map)
