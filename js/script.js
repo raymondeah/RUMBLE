@@ -1,6 +1,7 @@
 const targetWords = [
     "falco",
-    "sasha"
+    "sasha",
+    "conny"
 ];
 
 const wordBank = [
@@ -67,13 +68,18 @@ const DANCE_ANIMATION_DURATION = 500;
 const keyboard = document.querySelector("[data-keyboard]");
 const alertContainer = document.querySelector("[data-alert-container]");
 const guessGrid = document.querySelector("[data-guess-grid]");
+const puzzleNumber = document
+    .querySelector("#settings")
+    .querySelector(".menucontents")
+    .querySelector(".number");
 
-// const offsetFromDate = new Date(2022, 0, 1);
-// const msOffset = Date.now() - offsetFromDate;
-// const dayOffset = msOffset / 1000 / 60 / 60 / 24;
-// const targetWord = targetWords[Math.floor(dayOffset)];
+const startingDate = new Date(2022, 2, 16);
+const offsetDate = Date.now() - startingDate;
+const currentDay = Math.floor(offsetDate / 1000/ 60 / 60 / 24);
+const targetWord = targetWords[currentDay];
 
-let targetWord = targetWords[0];
+puzzleNumber.textContent = '#' + (currentDay+1);
+//let targetWord = targetWords[0];
 
 startInteraction();
 

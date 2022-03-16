@@ -356,6 +356,15 @@ body {
     color: white;
 }
 
+.number {
+    position: absolute;
+    right: calc(50% - min(225px, 45%));
+    top: 95%;
+    font-family: Arial, Helvetica, sans-serif;
+    color: hsl(200, 1%, 56%);
+    font-size: 0.8em;
+}
+
 a {
     color: hsl(200, 1%, 56%);
 }
