@@ -80,14 +80,15 @@ const targetWord = targetWords[currentDay];
 
 puzzleNumber.textContent = '#' + (currentDay+1);
 
-//localStorage.clear();
+localStorage.clear();
 const expireDate = localStorage.getItem('expire date');
 const guessGridPrev = localStorage.getItem('grid');
 const keyboardPrev = localStorage.getItem('keyboard');
+const alreadyPlayed = localStorage.getItem('already played');
 
 // STATS PAGE!!! //
 const today = new Date();
-if (today.getDay === startingDate.getDay && today.getFullYear === startingDate.getFullYear) {
+if (today.getDay === startingDate.getDay && today.getFullYear === startingDate.getFullYear && alreadyPlayed === null) {
     localStorage.setItem('games played', 0);
     localStorage.setItem('games won', 0);
     localStorage.setItem('current streak', 0);
@@ -127,7 +128,6 @@ localStorage.setItem('expire date', tomorrow);
 
 // DATE RESET!!! //
 
-const alreadyPlayed = localStorage.getItem('already played');
 if (alreadyPlayed) {
     stopInteraction();
 } else {
