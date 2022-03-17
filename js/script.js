@@ -73,28 +73,61 @@ const puzzleNumber = document
     .querySelector(".menucontents")
     .querySelector(".number");
 
-const startingDate = new Date(2022, 2, 16);
+const startingDate = new Date(2022, 2, 17);
 const offsetDate = Date.now() - startingDate;
-const currentDay = Math.floor(offsetDate / 1000/ 60 / 60 / 24);
+const currentDay = Math.floor(offsetDate / 1000 / 60 / 60 / 24);
 const targetWord = targetWords[currentDay];
 
 puzzleNumber.textContent = '#' + (currentDay+1);
 
 //localStorage.clear();
-guessGridPrev = localStorage.getItem('grid');
-keyboardPrev = localStorage.getItem('keyboard');
-alreadyWon = localStorage.getItem('W');
-if (guessGridPrev) {
-    hideHelp(0);
-    guessGrid.innerHTML = guessGridPrev;
-}
-if (keyboardPrev) {
-    keyboard.innerHTML = keyboardPrev;
+const expireDate = localStorage.getItem('expire date');
+const guessGridPrev = localStorage.getItem('grid');
+const keyboardPrev = localStorage.getItem('keyboard');
+
+// STATS PAGE!!! //
+const today = new Date();
+if (today.getDay === startingDate.getDay && today.getFullYear === startingDate.getFullYear) {
+    localStorage.setItem('games played', 0);
+    localStorage.setItem('games won', 0);
+    localStorage.setItem('current streak', 0);
+    localStorage.setItem('max streak', 0);
+} 
+const gamesPlayed = parseInt(localStorage.getItem('games played'));
+const gamesWon = parseInt(localStorage.getItem('games won'));
+const currStreak = parseInt(localStorage.getItem('current streak'));
+const maxStreak = parseInt(localStorage.getItem('max streak'));
+// STATS PAGE!!! //
+
+if (expireDate && Date.parse(expireDate) < Date.now()) {
+    localStorage.removeItem('grid');
+    localStorage.removeItem('keyboard');
+    localStorage.removeItem('W');
+} else {
+    if (guessGridPrev) {
+        hideHelp(0);
+        guessGrid.innerHTML = guessGridPrev;
+    }
+    if (keyboardPrev) {
+        keyboard.innerHTML = keyboardPrev;
+    }
 }
 //localStorage.setItem('guess grid', guessGrid.innerHTML);
 //localStorage.setItem('keyboard', keyboard.innerHTML);
 //let targetWord = targetWords[0];
 
+// DATE RESET!!! //
+
+const tomorrow = new Date();
+tomorrow.setDate(tomorrow.getDate() + 1);
+tomorrow.setHours(0);
+tomorrow.setMinutes(0);
+tomorrow.setSeconds(0);
+localStorage.setItem('expire date', tomorrow);
+
+// DATE RESET!!! //
+
+const alreadyWon = localStorage.getItem('W');
 if (alreadyWon) {
     stopInteraction;
 } else {
@@ -370,6 +403,12 @@ function checkWinLose(guess, tiles) {
         danceTiles(tiles);
         localStorage.setItem('W', 'T');
         stopInteraction();
+        localStorage.setItem('games played', gamesPlayed + 1);
+        localStorage.setItem('games won', gamesWon + 1);
+        localStorage.setItem('current streak', currStreak + 1);
+        if (currStreak + 1 > maxStreak) {
+            localStorage.setItem('max streak', currStreak + 1);
+        }
         return;
     }
 
@@ -377,9 +416,16 @@ function checkWinLose(guess, tiles) {
     if (remainingTiles.length === 0) {
         showAlert(targetWord.toUpperCase(), null);
         stopInteraction();
+        localStorage.setItem('games played', gamesPlayed + 1);
         return;
     }
 
+
+    // const gamesPlayed = localStorage.getItem('games played');
+    // const gamesWon = localStorage.getItem('games won');
+    // const currStreak = localStorage.getItem('current streak');
+    // const maxStreak = localStorage.getItem('max streak');
+    // const wonYesterday = localStorage.getItem('won yesterday?');
 }
 
 function danceTiles(tiles) {
@@ -431,5 +477,3 @@ function hideSettings() {
     box.style.animationTimingFunction = 'ease-out'
     box.style.animationFillMode = 'forwards';
 }
-
-console.log(guessGrid);

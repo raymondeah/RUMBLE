@@ -1,4 +1,4 @@
--stats/save game state using local storage
+-stats page
 -dark theme
 -wordbank
 -tile shaking (entire row should shake)
@@ -9,11 +9,9 @@
 -bug in mobile chrome when opening new tab in group
 
 -LOCAL STORAGE:
--grid container (html) DONE
--keyboard container (html) DONE
 
 -number of games played (int)
 -number of games won (int)
 -length of current streak (int)
+-length of max streak (int)
 -guess distribution (map)
--CLEAR LOCAL STORAGE AT MIDNIGHT (grid, keyboard, )
