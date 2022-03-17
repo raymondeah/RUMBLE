@@ -127,9 +127,9 @@ localStorage.setItem('expire date', tomorrow);
 
 // DATE RESET!!! //
 
-const alreadyWon = localStorage.getItem('W');
-if (alreadyWon) {
-    stopInteraction;
+const alreadyPlayed = localStorage.getItem('already played');
+if (alreadyPlayed) {
+    stopInteraction();
 } else {
     startInteraction();
 }
@@ -401,7 +401,7 @@ function checkWinLose(guess, tiles) {
         //genius magnificent impressive splendid great phew
         showAlert(winMessages[currRow - 1], 3000);
         danceTiles(tiles);
-        localStorage.setItem('W', 'T');
+        localStorage.setItem('already played', 'Y');
         stopInteraction();
         localStorage.setItem('games played', gamesPlayed + 1);
         localStorage.setItem('games won', gamesWon + 1);
@@ -416,6 +416,7 @@ function checkWinLose(guess, tiles) {
     if (remainingTiles.length === 0) {
         showAlert(targetWord.toUpperCase(), null);
         stopInteraction();
+        localStorage.setItem('already played', 'Y');
         localStorage.setItem('games played', gamesPlayed + 1);
         return;
     }

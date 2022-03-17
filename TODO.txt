@@ -1,15 +1,15 @@
+REQUIRED:
 -stats page
 -dark theme
 -wordbank
+
+NICE TO HAVE:
 -tile shaking (entire row should shake)
 -new menu transitions (slide up/down while fading in/out)
 -documentation/refactoring
 -testing
 
--bug in mobile chrome when opening new tab in group
-
--LOCAL STORAGE:
-
+LOCAL STORAGE:
 -number of games played (int)
 -number of games won (int)
 -length of current streak (int)
