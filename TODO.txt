@@ -1,8 +1,6 @@
--daily reset new word
 -stats/save game state using local storage
 -dark theme
 -wordbank
--puzzle number in settings page
 -tile shaking (entire row should shake)
 -new menu transitions (slide up/down while fading in/out)
 -documentation/refactoring
@@ -11,10 +9,11 @@
 -bug in mobile chrome when opening new tab in group
 
 -LOCAL STORAGE:
--grid container (html)
--keyboard container (html)
+-grid container (html) DONE
+-keyboard container (html) DONE
 
 -number of games played (int)
 -number of games won (int)
 -length of current streak (int)
 -guess distribution (map)
+-CLEAR LOCAL STORAGE AT MIDNIGHT (grid, keyboard, )

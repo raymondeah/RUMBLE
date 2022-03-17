@@ -79,9 +79,28 @@ const currentDay = Math.floor(offsetDate / 1000/ 60 / 60 / 24);
 const targetWord = targetWords[currentDay];
 
 puzzleNumber.textContent = '#' + (currentDay+1);
+
+//localStorage.clear();
+guessGridPrev = localStorage.getItem('grid');
+keyboardPrev = localStorage.getItem('keyboard');
+alreadyWon = localStorage.getItem('W');
+if (guessGridPrev) {
+    hideHelp(0);
+    guessGrid.innerHTML = guessGridPrev;
+}
+if (keyboardPrev) {
+    keyboard.innerHTML = keyboardPrev;
+}
+//localStorage.setItem('guess grid', guessGrid.innerHTML);
+//localStorage.setItem('keyboard', keyboard.innerHTML);
 //let targetWord = targetWords[0];
 
-startInteraction();
+if (alreadyWon) {
+    stopInteraction;
+} else {
+    startInteraction();
+}
+
 
 function startInteraction() {
     document.addEventListener("click", handleMouseClick);
@@ -301,6 +320,8 @@ function flipTile(states, guess, activeTiles) {
             tile.addEventListener("transitionend", () => {
                 startInteraction();
                 checkWinLose(guess, activeTiles);
+                localStorage.setItem('grid', document.querySelector("[data-guess-grid]").innerHTML);
+                localStorage.setItem('keyboard', document.querySelector("[data-keyboard]").innerHTML);
             }, { once: true });
         }
     }, { once: true});
@@ -347,6 +368,7 @@ function checkWinLose(guess, tiles) {
         //genius magnificent impressive splendid great phew
         showAlert(winMessages[currRow - 1], 3000);
         danceTiles(tiles);
+        localStorage.setItem('W', 'T');
         stopInteraction();
         return;
     }
@@ -386,10 +408,10 @@ function showHelp() {
     box.style.animationFillMode = 'forwards';
 }
 
-function hideHelp() {
+function hideHelp(duration) {
     const box = document.getElementById("help");
     box.style.animationName = 'hide'
-    box.style.animationDuration = '250ms'
+    box.style.animationDuration = duration + 'ms';
     box.style.animationTimingFunction = 'ease-out'
     box.style.animationFillMode = 'forwards';
 }
@@ -409,3 +431,5 @@ function hideSettings() {
     box.style.animationTimingFunction = 'ease-out'
     box.style.animationFillMode = 'forwards';
 }
+
+console.log(guessGrid);
