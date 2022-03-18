@@ -80,7 +80,7 @@ const targetWord = targetWords[currentDay];
 
 puzzleNumber.textContent = '#' + (currentDay+1);
 
-//localStorage.clear();
+localStorage.clear();
 const expireDate = localStorage.getItem('expire date');
 const guessGridPrev = localStorage.getItem('grid');
 const keyboardPrev = localStorage.getItem('keyboard');
@@ -103,7 +103,7 @@ const maxStreak = parseInt(localStorage.getItem('max streak'));
 if (expireDate && Date.parse(expireDate) < Date.now()) {
     localStorage.removeItem('grid');
     localStorage.removeItem('keyboard');
-    localStorage.removeItem('W');
+    localStorage.removeItem('already played');
 } else {
     if (guessGridPrev) {
         hideHelp(0);
