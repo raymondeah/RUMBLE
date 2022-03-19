@@ -127,8 +127,8 @@ tomorrow.setSeconds(0);
 localStorage.setItem('expire date', tomorrow);
 
 // DATE RESET!!! //
-
-if (alreadyPlayed) {
+const ap = localStorage.getItem('already played');
+if (ap) {
     stopInteraction();
 } else {
     startInteraction();
