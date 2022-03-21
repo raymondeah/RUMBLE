@@ -2,7 +2,8 @@ const targetWords = [
     "falco",
     "sasha",
     "conny",
-    "pieck"
+    "pieck",
+    "hange"
 ];
 
 const wordBank = [
