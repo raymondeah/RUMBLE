@@ -74,7 +74,7 @@ const puzzleNumber = document
     .querySelector(".menucontents")
     .querySelector(".number");
 
-const startingDate = new Date(2022, 2, 17);
+const startingDate = new Date(2022, 2, 22);
 const offsetDate = Date.now() - startingDate;
 const currentDay = Math.floor(offsetDate / 1000 / 60 / 60 / 24);
 const targetWord = targetWords[currentDay];
