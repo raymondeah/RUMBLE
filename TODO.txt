@@ -1,11 +1,14 @@
 REQUIRED:
 -stats page
--dark theme
+-dark theme DONE
 -wordbank
+-easy mode
 
 NICE TO HAVE:
+-hard mode
 -tile shaking (entire row should shake)
 -new menu transitions (slide up/down while fading in/out)
+-reanimate on page refresh
 -documentation/refactoring
 -testing
 

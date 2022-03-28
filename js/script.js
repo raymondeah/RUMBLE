@@ -63,6 +63,36 @@ const wordBank = [
 
     "titan"
 ];
+//localStorage.clear()
+// *** DARK MODE *** //
+const colorSwitch = document.querySelector('.color-switch');
+const colorCheck = document.querySelector('.color-check')
+colorCheck.checked = true;
+const currentTheme = localStorage.getItem('theme');
+if (currentTheme) {
+    document.documentElement.setAttribute('data-theme', currentTheme);
+  
+    if (currentTheme === 'light') {
+        colorCheck.checked = false;
+    } // else {
+    //     colorSwitch.checked = false;
+    // }
+}
+
+function switchTheme(e) {
+    if (e.target.checked) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        localStorage.setItem('theme', 'dark');
+    }
+    else {        
+        document.documentElement.setAttribute('data-theme', 'light');
+        localStorage.setItem('theme', 'light');
+    }    
+}
+
+colorSwitch.addEventListener('change', switchTheme, false);
+
+// *** DARK MODE *** //
 
 const WORD_LENGTH = 5;
 const FLIP_ANIMATION_DURATION = 500;
@@ -75,7 +105,7 @@ const puzzleNumber = document
     .querySelector(".menucontents")
     .querySelector(".number");
 
-const startingDate = new Date(2022, 2, 22);
+const startingDate = new Date(2022, 2, 28);
 const offsetDate = Date.now() - startingDate;
 const currentDay = Math.floor(offsetDate / 1000 / 60 / 60 / 24);
 const targetWord = targetWords[currentDay];

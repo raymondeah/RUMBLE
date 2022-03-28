@@ -101,7 +101,7 @@
         <button class="key" data-key="M">M</button>
         <button data-delete class="key large">
             <img src="/icons/del.svg" class="del" onClick="deleteKey();">
-          </button>
+        </button>
     </div>
 
     <!-- HELP -->
@@ -111,7 +111,7 @@
             <div>
                 <H4 class="instructions-header">HOW TO PLAY</H4>
             </div>
-            <div class="text" style="border-bottom: 1px solid hsl(240, 2%, 23%)">
+            <div class="text">
                 <br>Guess the <b>RUMBLE</b> in 6 tries.<br><br>       
                 Each guess must be a valid five-letter word. Hit the enter button to submit. <br><br>
                 The word bank includes five-letter <b>characters</b>, <b>locations</b>, <b>objects</b>, and <b>concepts</b>
@@ -120,11 +120,11 @@
                 After each guess, the color of the tiles will change to show how close your guess was to the word. <br><br>
             </div>
 
-            <H4 class="text"><br>Examples</H4><br>
-            <div class="text" style="border-bottom: 1px solid hsl(240, 2%, 23%)">
+            <H4 style="margin-left: 5%; margin-right: 5%; font-size: .8em; font-family: Arial, Helvetica, sans-serif;"><br>Examples</H4><br>
+            <div class="text">
                 <table id="example1">
                     <tr>
-                        <td class="exampleCell" style="background-color: hsl(115, 29%, 43%); border-color: hsl(115, 29%, 43%);">T</td>
+                        <td class="instrG">T</td>
                         <td class="exampleCell">I</td>
                         <td class="exampleCell">T</td>
                         <td class="exampleCell">A</td>
@@ -136,7 +136,7 @@
                 <table id="example2">
                     <tr>
                         <td class="exampleCell">E</td>
-                        <td class="exampleCell" style="background-color: hsl(49, 51%, 47%); border-color: hsl(49, 51%, 47%);">R</td>
+                        <td class="instrY">R</td>
                         <td class="exampleCell">W</td>
                         <td class="exampleCell">I</td>
                         <td class="exampleCell">N</td>
@@ -149,13 +149,13 @@
                         <td class="exampleCell">T</td>
                         <td class="exampleCell">R</td>
                         <td class="exampleCell">O</td>
-                        <td class="exampleCell" style="background-color: hsl(200, 1%, 34%);">S</td>
+                        <td class="instrGr">S</td>
                         <td class="exampleCell">T</td>
                     </tr>
                 </table>
                 <br>The letter <b>S</b> is not in the word in any spot.<br><br>
             </div>
-            <div class="text">
+            <div style="margin-left: 5%; margin-right: 5%; font-size: .8em; font-family: Arial, Helvetica, sans-serif;">
                 <br><b>A new RUMBLE will be available each day!</b>
             </div>
         </div>
@@ -167,22 +167,69 @@
             <input type="button" class="xbuttonsidemenu" value="X" onClick="hideSettings();"></input>
             <!-- <div> -->
                 <H4 class="instructions-header">SETTINGS</H4>
-                <div class="text" style="font-size: 1.1em; border-bottom: 1px solid hsl(240, 2%, 23%);">
-                    <br>Dark Theme
-                    <label class="switch" style="float: right;">
-                        <input type="checkbox">
+
+                <div class="row" style="font-size: 1.1em;">
+                    <br>Dark Theme<br><br>
+                    <label class="color-switch">
+                        <input type="checkbox" class="color-check">
                         <span class="slider round"></span>
                     </label>
-                    <br><br>
                 </div>
-                <div class="text" style="font-size: 1.1em; border-bottom: 1px solid hsl(240, 2%, 23%);">
-                    <br>Feedback
-                    <a href="mailto:eah.r@northeastern.edu" style="font-size: 0.9em; float: right;" target="_blank">Email</a><br><br>
+
+                <div class="row">
+                    <div>
+                        <div style="font-size: 1.1em;">
+                            <br>Easy Mode
+                        </div>
+                        <div style="font-size: 0.75em; color: hsl(200, 1%, 42%);">
+                            Word bank extended to include normal dictionary words<br><br>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label class="switch">
+                            <input type="checkbox">
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
                 </div>
-                <div class="text" style="font-size: 1.1em;">
-                    <br>Developed by
-                    <a href="https://raymondeah.github.io/" style="font-size: 0.9em; float: right;" target="_blank">Ray Eah</a>
+                
+                <div class="row">
+                    <div>
+                        <div style="font-size: 1.1em;">
+                            <br>Hard Mode
+                        </div>
+                        <div style="font-size: 0.75em; color: hsl(200, 1%, 42%);">
+                            Any revealed hints must be used in subsequent guesses<br><br>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label class="switch">
+                            <input type="checkbox">
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
                 </div>
+
+                <div class="row">
+                    <div style="font-size: 1.1em;">
+                        <br>Feedback<br><br>
+                    </div>
+                    <div style="font-size: 1.1em;">
+                        <br><a href="mailto:eah.r@northeastern.edu" style="font-size: 0.9em;" target="_blank">Email<br><br></a>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div style="font-size: 1.1em;">
+                        <br>Developed by<br><br>
+                    </div>
+                    <div style="font-size: 1.1em;">
+                        <br><a href="https://raymondeah.github.io/" style="font-size: 0.9em;" target="_blank">Ray Eah</a><br><br>
+                    </div>
+                </div>
+
                 <div class="number"></div>
             <!-- </div> -->
         </div>
