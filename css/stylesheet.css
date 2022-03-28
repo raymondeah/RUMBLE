@@ -407,7 +407,7 @@ body {
     text-align: center;
     border: .1em solid var(--green);
     background-color: var(--green);
-    color: var(--text-color-inverse);
+    color: white;
 }
 
 .instrY {
@@ -423,7 +423,7 @@ body {
     text-align: center;
     border: .1em solid var(--yellow);
     background-color: var(--yellow);
-    color: var(--text-color-inverse);
+    color: white;
 }
 
 .instrGr {
@@ -439,7 +439,7 @@ body {
     text-align: center;
     border: .1em solid var(--active-tile);
     background-color: var(--active-tile);
-    color: var(--text-color-inverse);
+    color: white;
 }
 
 .xbuttonsidemenu {
