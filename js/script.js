@@ -162,7 +162,7 @@ function updateStats() {
     const test = document.querySelectorAll('.guess-row-item')
     const distr = JSON.parse(localStorage.getItem('guess distribution'))
     for(let i = 0; i < test.length; i++) {
-        test[i].textContent = i + ': ' + distr[i]
+        test[i].textContent = (i+1) + ': ' + distr[i]
     }
 }
 
