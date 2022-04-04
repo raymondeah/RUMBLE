@@ -63,7 +63,7 @@ const wordBank = [
 
     "titan"
 ];
-//localStorage.clear()
+localStorage.clear()
 // *** DARK MODE *** //
 const colorSwitch = document.querySelector('.color-switch');
 const colorCheck = document.querySelector('.color-check')
