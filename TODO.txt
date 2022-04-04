@@ -1,5 +1,5 @@
 REQUIRED:
--stats page (bar graph)
+-stats page (bar graph, share button, opacity, centering)
 -wordbank
 -easy mode
 -checkmark styling
