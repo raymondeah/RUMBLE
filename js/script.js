@@ -593,6 +593,7 @@ function hideSettings() {
     box.style.animationTimingFunction = 'ease-out'
     box.style.animationFillMode = 'forwards';
 }
+<<<<<<< HEAD
 
 function showStats() {
     const box = document.getElementById('stats');
@@ -609,3 +610,5 @@ function hideStats() {
     box.style.animationTimingFunction = 'ease-out'
     box.style.animationFillMode = 'forwards';
 }
+=======
+>>>>>>> a132268357f6a5de69b475be4f682e186638a7c9
