@@ -107,7 +107,7 @@ const puzzleNumber = document
 
 const startingDate = new Date(2022, 3, 4);
 const offsetDate = Date.now() - startingDate;
-const currentDay = Math.floor(offsetDate / 1000 / 60 / 60 / 24);
+const currentDay = Math.max(0, Math.floor(offsetDate / 1000 / 60 / 60 / 24));
 const targetWord = targetWords[currentDay];
 
 puzzleNumber.textContent = '#' + (currentDay+1);
