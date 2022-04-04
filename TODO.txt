@@ -1,20 +1,14 @@
 REQUIRED:
--stats page
--dark theme DONE
+-stats page (bar graph)
 -wordbank
 -easy mode
+-checkmark styling
 
 NICE TO HAVE:
 -hard mode
 -tile shaking (entire row should shake)
 -new menu transitions (slide up/down while fading in/out)
--reanimate on page refresh
+-reanimate tiles on page refresh
+
 -documentation/refactoring
 -testing
-
-LOCAL STORAGE:
--number of games played (int)
--number of games won (int)
--length of current streak (int)
--length of max streak (int)
--guess distribution (map)

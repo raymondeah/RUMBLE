@@ -105,7 +105,7 @@ const puzzleNumber = document
     .querySelector(".menucontents")
     .querySelector(".number");
 
-const startingDate = new Date(2022, 2, 28);
+const startingDate = new Date(2022, 3, 4);
 const offsetDate = Date.now() - startingDate;
 const currentDay = Math.floor(offsetDate / 1000 / 60 / 60 / 24);
 const targetWord = targetWords[currentDay];
@@ -119,17 +119,54 @@ const keyboardPrev = localStorage.getItem('keyboard');
 const alreadyPlayed = localStorage.getItem('already played');
 
 // STATS PAGE!!! //
+
+// first time playing: need to initialize local storage attributes
 const today = new Date();
-if (today.getDay === startingDate.getDay && today.getFullYear === startingDate.getFullYear && alreadyPlayed === null) {
+// if (today.getDay === startingDate.getDay && today.getFullYear === startingDate.getFullYear && alreadyPlayed === null) {
+//     localStorage.setItem('games played', 0);
+//     localStorage.setItem('games won', 0);
+//     localStorage.setItem('current streak', 0);
+//     localStorage.setItem('max streak', 0);
+//     localStorage.setItem('guess distribution', JSON.stringify([0, 0, 0, 0, 0, 0]))
+// } 
+
+const gamesPlayed = parseInt(localStorage.getItem('games played'))
+if (!gamesPlayed) {
     localStorage.setItem('games played', 0);
     localStorage.setItem('games won', 0);
     localStorage.setItem('current streak', 0);
     localStorage.setItem('max streak', 0);
-} 
-const gamesPlayed = parseInt(localStorage.getItem('games played'));
-const gamesWon = parseInt(localStorage.getItem('games won'));
-const currStreak = parseInt(localStorage.getItem('current streak'));
-const maxStreak = parseInt(localStorage.getItem('max streak'));
+    localStorage.setItem('guess distribution', JSON.stringify([0, 0, 0, 0, 0, 0]))
+}
+
+function updateStats() {
+    const gamesPlayed = parseInt(localStorage.getItem('games played'));
+    const gamesWon = parseInt(localStorage.getItem('games won'));
+    const currStreak = parseInt(localStorage.getItem('current streak'));
+    const maxStreak = parseInt(localStorage.getItem('max streak'));
+
+    const gamesPlayedH = document.querySelector('.played-num');
+    const winPercent = document.querySelector('.win-percent-num');
+    const currStreakH = document.querySelector('.curr-streak-num');
+    const maxStreakH = document.querySelector('.max-streak-num')
+
+    gamesPlayedH.textContent = gamesPlayed;
+    if (gamesPlayed === 0) {
+        winPercent.textContent = '0'
+    } else {
+        winPercent.textContent = Math.round(((gamesWon / gamesPlayed) * 100))
+    }
+    currStreakH.textContent = currStreak;
+    maxStreakH.textContent = maxStreak;
+
+    const test = document.querySelectorAll('.guess-row-item')
+    const distr = JSON.parse(localStorage.getItem('guess distribution'))
+    for(let i = 0; i < test.length; i++) {
+        test[i].textContent += distr[i]
+    }
+}
+
+updateStats();
 // STATS PAGE!!! //
 
 if (expireDate && Date.parse(expireDate) < Date.now()) {
@@ -159,9 +196,41 @@ tomorrow.setSeconds(0);
 localStorage.setItem('expire date', tomorrow);
 
 // DATE RESET!!! //
+
+function countdown() {
+    let now = new Date();
+    let resetDate = new Date();
+    resetDate.setDate(now.getDate() + 1)
+    resetDate.setHours(0);
+    resetDate.setMinutes(0);
+    resetDate.setSeconds(0);
+
+    let remTime = resetDate - now;
+    let s = Math.floor(remTime / 1000);
+    let m = Math.floor(s / 60);
+    let h = Math.floor(m / 60);
+
+    h %= 24;
+    m %= 60;
+    s %= 60;
+
+    h = (h < 10) ? '0' + h : h;
+    m = (m < 10) ? '0' + m : m;
+    s = (s < 10) ? '0' + s : s;
+
+    c = h + ':' + m + ':' + s;
+
+    //ticker = document.querySelector()
+    document.querySelector('.ticker').textContent = c
+    setTimeout(countdown, 1000);
+}
+
+countdown()
+
 const ap = localStorage.getItem('already played');
 if (ap) {
     stopInteraction();
+    showStats();
 } else {
     startInteraction();
 }
@@ -431,25 +500,40 @@ function checkWinLose(guess, tiles) {
 
     if (guess === targetWord) {
         //genius magnificent impressive splendid great phew
+        stopInteraction();
         showAlert(winMessages[currRow - 1], 3000);
         danceTiles(tiles);
-        localStorage.setItem('already played', 'Y');
+        
         stopInteraction();
-        localStorage.setItem('games played', gamesPlayed + 1);
-        localStorage.setItem('games won', gamesWon + 1);
-        localStorage.setItem('current streak', currStreak + 1);
-        if (currStreak + 1 > maxStreak) {
-            localStorage.setItem('max streak', currStreak + 1);
+        localStorage.setItem('already played', 'Y');
+        localStorage.setItem('games played', parseInt(localStorage.getItem('games played')) + 1);
+        localStorage.setItem('games won', parseInt(localStorage.getItem('games won') + 1));
+        localStorage.setItem('current streak', parseInt(localStorage.getItem('current streak')) + 1);
+        if (parseInt(localStorage.getItem('current streak')) > parseInt(localStorage.getItem('max streak'))) {
+            localStorage.setItem('max streak', parseInt(localStorage.getItem('max streak') + 1));
         }
+        let distr = JSON.parse(localStorage.getItem('guess distribution'))
+        distr[currRow - 1] += 1
+        localStorage.setItem('guess distribution', JSON.stringify(distr))
+        updateStats();
+        setTimeout(() => {
+            showStats()
+        }, 3000)
         return;
     }
 
     
     if (remainingTiles.length === 0) {
-        showAlert(targetWord.toUpperCase(), null);
         stopInteraction();
+        showAlert(targetWord.toUpperCase(), 3000);
+        
         localStorage.setItem('already played', 'Y');
-        localStorage.setItem('games played', gamesPlayed + 1);
+        localStorage.setItem('current streak', 0);
+        localStorage.setItem('games played',parseInt(localStorage.getItem('games played')) + 1);
+        updateStats();
+        setTimeout(() => {
+            showStats()
+        }, 3000)
         return;
     }
 
@@ -475,7 +559,6 @@ function danceTiles(tiles) {
         }, index * DANCE_ANIMATION_DURATION / 5);
     });
 }
-
 
 /////////////////////////////////////////////////////////////
 
@@ -505,6 +588,22 @@ function showSettings() {
 
 function hideSettings() {
     const box = document.getElementById("settings");
+    box.style.animationName = 'hide'
+    box.style.animationDuration = '250ms'
+    box.style.animationTimingFunction = 'ease-out'
+    box.style.animationFillMode = 'forwards';
+}
+
+function showStats() {
+    const box = document.getElementById('stats');
+    box.style.animationName = 'show'
+    box.style.animationDuration = '250ms'
+    box.style.animationTimingFunction = 'ease-out'
+    box.style.animationFillMode = 'forwards';
+}
+
+function hideStats() {
+    const box = document.getElementById('stats');
     box.style.animationName = 'hide'
     box.style.animationDuration = '250ms'
     box.style.animationTimingFunction = 'ease-out'

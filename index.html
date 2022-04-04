@@ -27,9 +27,15 @@
 <body>
     <div class="head">
         <!-- <input type="button" class="instr" value="?" onClick="showHelp();"></input> -->
-        <img src="/icons/qmark.svg" class="instr" onClick="showHelp();">
+        <div class="head-left">
+            <img src="/icons/qmark.svg" class="instr" onClick="showHelp();">
+        </div>
         <h1 class="title">Rumble</h1>
-        <img src="/icons/settings.svg" class="settings" onClick="showSettings();">
+        <div class="head-right">
+            <!-- <input type="button" class="stats" value="S" onClick="showStats();"></input> -->
+            <img src="/icons/stats.svg" class="stats" onClick="showStats();">
+            <img src="/icons/settings.svg" class="settings" onClick="showSettings();">
+        </div>
         <!-- <input type="button" class="settings" value="S" onClick="showSettings();"></input> -->
     </div>
     <div data-alert-container class="alert-container">
@@ -194,7 +200,7 @@
                     </div>
                 </div>
                 
-                <div class="row">
+                <!-- <div class="row">
                     <div>
                         <div style="font-size: 1.1em;">
                             <br>Hard Mode
@@ -210,7 +216,7 @@
                             <span class="slider round"></span>
                         </label>
                     </div>
-                </div>
+                </div> -->
 
                 <div class="row">
                     <div style="font-size: 1.1em;">
@@ -231,6 +237,61 @@
                 </div>
 
                 <div class="number"></div>
+            <!-- </div> -->
+        </div>
+    </div>
+
+    <!-- STATS -->
+    <div id="stats" class="popupmenu">
+        <div class="popupmenucontents">
+            <input type="button" class="xbuttonstats" value="X" onClick="hideStats();"></input>
+            <!-- <div> -->
+            <H4 class="instructions-header">STATISTICS</H4>
+
+            <div class="stats-row">
+                <div class="stats-row-item">
+                    <div class="played-num" style="font-size: 3em;"></div>
+                    <div class="played-text">Played</div>
+                </div>
+                <div class="stats-row-item">
+                    <div class="win-percent-num" style="font-size: 3em;"></div>
+                    <div class="win-percent-text">Win %</div>
+                </div>
+                <div class="stats-row-item">
+                    <div class="curr-streak-num" style="font-size: 3em;"></div>
+                    <div class="currStreak">Current Streak</div>
+                </div>
+                <div class="stats-row-item">
+                    <div class="max-streak-num" style="font-size: 3em;"></div>
+                    <div class="maxStreak">Max Streak</div>
+                </div>
+            </div>
+            
+            <br>
+
+            <H4 class="instructions-header">GUESS DISTRIBUTION</H4>
+
+            <div class="guess-row">
+                <div class="guess-row-item">1:</div>
+                <div class="guess-row-item">2:</div>
+                <div class="guess-row-item">3:</div>
+                <div class="guess-row-item">4:</div>
+                <div class="guess-row-item">5:</div>
+                <div class="guess-row-item">6:</div>
+            </div>
+
+            <br>
+
+            <div class="bottom-row">
+                <div class="timer">
+                    <H4 class="instructions-header">NEXT RUMBLE</H4>
+                    <div class="ticker"></div>
+                </div>
+                
+                <!-- <H4 class="instructions-header">NEXT WORDLE</H4> -->
+            </div>
+
+            
             <!-- </div> -->
         </div>
     </div>
