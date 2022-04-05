@@ -507,10 +507,10 @@ function checkWinLose(guess, tiles) {
         stopInteraction();
         localStorage.setItem('already played', 'Y');
         localStorage.setItem('games played', parseInt(localStorage.getItem('games played')) + 1);
-        localStorage.setItem('games won', parseInt(localStorage.getItem('games won') + 1));
+        localStorage.setItem('games won', parseInt(localStorage.getItem('games won')) + 1);
         localStorage.setItem('current streak', parseInt(localStorage.getItem('current streak')) + 1);
         if (parseInt(localStorage.getItem('current streak')) > parseInt(localStorage.getItem('max streak'))) {
-            localStorage.setItem('max streak', parseInt(localStorage.getItem('max streak') + 1));
+            localStorage.setItem('max streak', parseInt(localStorage.getItem('max streak')) + 1);
         }
         let distr = JSON.parse(localStorage.getItem('guess distribution'))
         distr[currRow - 1] += 1
