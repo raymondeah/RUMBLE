@@ -179,7 +179,7 @@
                     <br>Dark Theme<br><br>
                     <label class="color-switch">
                         <input type="checkbox" class="color-check">
-                        <span class="slider round"></span>
+                        <span class="slider-round"></span>
                     </label>
                 </div>
 
@@ -274,15 +274,38 @@
             
             <br>
 
-            <H4 class="instructions-header">GUESS DISTRIBUTION</H4>
+            <H4 class="instructions-header" style="margin-bottom: 5px;">GUESS DISTRIBUTION</H4>
 
-            <div class="guess-row">
-                <div class="guess-row-item"></div>
-                <div class="guess-row-item"></div>
-                <div class="guess-row-item"></div>
-                <div class="guess-row-item"></div>
-                <div class="guess-row-item"></div>
-                <div class="guess-row-item"></div>
+            <div class="graph">
+                <div class="graph-text">
+                    <div>1</div>
+                    <div>2</div>
+                    <div>3</div>
+                    <div>4</div>
+                    <div>5</div>
+                    <div>6</div>
+                </div>
+
+                <div class="graph-bars">
+                    <div class="bar">
+                        <div class="bar-text"></div>
+                    </div>
+                    <div class="bar">
+                        <div class="bar-text"></div>
+                    </div>
+                    <div class="bar">
+                        <div class="bar-text"></div>
+                    </div>
+                    <div class="bar">
+                        <div class="bar-text"></div>
+                    </div>
+                    <div class="bar">
+                        <div class="bar-text"></div>
+                    </div>
+                    <div class="bar">
+                        <div class="bar-text"></div>
+                    </div>
+                </div>
             </div>
 
             <br>
@@ -292,7 +315,14 @@
                     <H4 class="instructions-header">NEXT RUMBLE</H4>
                     <div class="ticker"></div>
                 </div>
-                
+
+                <div class="vertical-line"></div>
+
+                <div class="share" onClick="share()">
+                    <H3>SHARE</H4>
+                    <div></div>
+                    <img src="/icons/share.svg" class="share-icon">
+                </div>
                 <!-- <H4 class="instructions-header">NEXT WORDLE</H4> -->
             </div>
 

@@ -159,10 +159,17 @@ function updateStats() {
     currStreakH.textContent = currStreak;
     maxStreakH.textContent = maxStreak;
 
-    const test = document.querySelectorAll('.guess-row-item')
+    const bars = document.querySelectorAll('.bar');
+    const text = document.querySelectorAll('.bar-text');
     const distr = JSON.parse(localStorage.getItem('guess distribution'))
-    for(let i = 0; i < test.length; i++) {
-        test[i].textContent = (i+1) + ': ' + distr[i]
+    const full_bar = Math.max(...distr)
+
+    for(let i = 0; i < bars.length; i++) {
+        text[i].textContent = distr[i];
+
+        const percentage = (distr[i] / Math.max(1, full_bar)) * 100
+        // bars[i].style = 'width: ' + Math.max(percentage, 5) + '%;'
+        bars[i].style = 'width: max(25px, ' + percentage + '%)';
     }
 }
 
@@ -608,4 +615,8 @@ function hideStats() {
     box.style.animationDuration = '250ms'
     box.style.animationTimingFunction = 'ease-out'
     box.style.animationFillMode = 'forwards';
+}
+
+function share() {
+    showAlert('share feature coming soon')
 }

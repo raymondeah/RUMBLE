@@ -426,15 +426,110 @@ body {
     text-align: center;
 }
 
-.ticker {
+.bottom-row {
     font-family: Arial, Helvetica, sans-serif;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    /* border: 2px solid red; */
+    width: 80%;
+    height: 100%;
+}
+
+.timer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 40%;
+}
+
+.ticker {
     font-size: 2.2em;
     margin-top: 5px;
     /* margin-bottom: 0.8em; */
 }
 
-.guess-row {
+.vertical-line {
+    /* border: 2px solid blue; */
+    width: 1px;
+    height: 5em;
+    /* color: black; */
+    background-color: var(--text-color-primary)
+    /* border: 2px solid blue; */
+}
+
+.share {
+    width: 40%;
+    height: 3.5em;
+    background-color: var(--green);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.25em;
+}
+
+.share > div {
+    width: 0.5em;
+}
+
+.share-icon {
+    filter: invert(1);
+    width: 20px;
+}
+
+.graph {
     font-family: Arial, Helvetica, sans-serif;
+    /* border: 2px solid red; */
+    width: 70%;
+    display: flex;
+    flex-direction: row;
+}
+
+.graph-text > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 5px;
+    margin-right: 5px;
+    font-size: 0.9em;
+    height: 1.4em;
+    /* border: 2px solid blue; */
+}
+
+.graph-bars {
+    width: 100%;
+    /* border: solid green 2px; */
+}
+
+.bar {
+    font-weight: bold;
+    /* border: 2px solid blue; */
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    font-size: 0.9em;
+    height: 1.4em;
+    width: 100%;
+    background-color: var(--wrong);
+    color: white;
+    text-align: right;
+    margin-top: 5px;
+    /* border: 2px solid red; */
+}
+
+.bar-text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 1.4em;
+    /* width: 100px; */
+    width: 25px;
+    /* border: 2px solid blue; */
+    /* border: 2px solid blue; */
 }
 
 .menucontents {
