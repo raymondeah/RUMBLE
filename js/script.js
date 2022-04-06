@@ -622,11 +622,6 @@ function getShareableResults() {
     const yellowSquare = '🟨';
     const greySquare = '⬜';
 
-    const ap = localStorage.getItem('already played');
-    if (!ap) {
-        showAlert('finish before sharing');
-    }
-
     const tiles = document.querySelectorAll('[data-state]');
     let row = tiles.length / WORD_LENGTH;
 
@@ -660,7 +655,12 @@ function getShareableResults() {
 }
 
 function share() {
-    showAlert('copied to clipboard');
+    const ap = localStorage.getItem('already played');
+    if (!ap) {
+        showAlert('finish before sharing');
+    } else {
+        showAlert('copied to clipboard');
+    }
     const results = getShareableResults()
     navigator.clipboard.writeText(results);
 }
