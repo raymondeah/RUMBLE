@@ -622,10 +622,25 @@ function getShareableResults() {
     const yellowSquare = '🟨';
     const greySquare = '⬜';
 
-    const tiles = document.querySelectorAll('[data-state]');
-    console.log(tiles);
+    result = 'RUMBLE ' + (currentDay+1) + ' ' + 1 + '/6' + '\n';
 
-    return 'RUMBLE ' + (currentDay+1) + ' ' + 1 + '/6' + '\n' + greenSquare + yellowSquare + greySquare;
+    const tiles = document.querySelectorAll('[data-state]');
+
+    for(let i = 0; i < tiles.length; i++) {
+        if (i > 0 && i % 5 == 0) {
+            result += '\n'
+        }
+        const tile = tiles[i]
+        if (tile.dataset.state === "correct") {
+            result += greenSquare;
+        } else if (tile.dataset.state === "wrong-location") {
+            result += yellowSquare;
+        } else {
+            result += greySquare;
+        }
+    }
+
+    return result;
 }
 
 function share() {
