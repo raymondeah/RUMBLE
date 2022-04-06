@@ -622,12 +622,23 @@ function getShareableResults() {
     const yellowSquare = '🟨';
     const greySquare = '⬜';
 
-    result = 'RUMBLE ' + (currentDay+1) + ' ' + 1 + '/6' + '\n';
-
     const tiles = document.querySelectorAll('[data-state]');
+    let row = tiles.length / WORD_LENGTH;
 
+    if (row === 6) {
+        for(let i = 25; i < 30; i++) {
+            const tile = tiles[i]
+            if (tile.dataset.state === "correct") {
+            } else {
+                row = 'X'
+                break;
+            }
+        }
+    }
+
+    result = 'RUMBLE ' + (currentDay+1) + ' ' + row + '/6' + '\n';
     for(let i = 0; i < tiles.length; i++) {
-        if (i > 0 && i % 5 == 0) {
+        if (i % 5 == 0) {
             result += '\n'
         }
         const tile = tiles[i]
