@@ -658,6 +658,7 @@ function share() {
     const ap = localStorage.getItem('already played');
     if (!ap) {
         showAlert('finish before sharing');
+        return;
     } else {
         showAlert('copied to clipboard');
     }
