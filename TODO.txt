@@ -1,11 +1,12 @@
 REQUIRED:
 -stats page (bar graph coloring)
+-checkmark styling
 -wordbank
 -easy mode
--checkmark styling
 
 NICE TO HAVE:
 -hard mode
+-high contrast mode
 -tile shaking (entire row should shake)
 -new menu transitions (slide up/down while fading in/out)
 -reanimate tiles on page refresh

@@ -518,7 +518,6 @@ body {
 
 .bar {
     font-weight: bold;
-    /* border: 2px solid blue; */
     display: flex;
     align-items: center;
     justify-content: right;
@@ -529,7 +528,10 @@ body {
     color: white;
     text-align: right;
     margin-top: 5px;
-    /* border: 2px solid red; */
+}
+
+.bar[data-state="solved"] {
+    background-color: var(--green) !important;
 }
 
 .bar-text {

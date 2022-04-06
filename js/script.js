@@ -171,6 +171,7 @@ function updateStats() {
         // bars[i].style = 'width: ' + Math.max(percentage, 5) + '%;'
         bars[i].style = 'width: max(25px, ' + percentage + '%)';
     }
+    
 }
 
 updateStats();
