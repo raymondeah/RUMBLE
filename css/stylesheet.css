@@ -461,6 +461,7 @@ body {
 }
 
 .share {
+    cursor: pointer;
     width: 40%;
     height: 3.5em;
     background-color: var(--green);
