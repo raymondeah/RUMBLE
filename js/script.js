@@ -617,6 +617,19 @@ function hideStats() {
     box.style.animationFillMode = 'forwards';
 }
 
+function getShareableResults() {
+    const greenSquare = '🟩';
+    const yellowSquare = '🟨';
+    const greySquare = '⬜';
+
+    const tiles = document.querySelectorAll('[data-state]');
+    console.log(tiles);
+
+    return 'RUMBLE ' + (currentDay+1) + ' ' + 1 + '/6' + '\n' + greenSquare + yellowSquare + greySquare;
+}
+
 function share() {
-    showAlert('share feature coming soon')
+    showAlert('copied to clipboard');
+    const results = getShareableResults()
+    navigator.clipboard.writeText(results);
 }
