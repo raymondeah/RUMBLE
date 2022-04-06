@@ -657,7 +657,7 @@ function getShareableResults() {
 function share() {
     const ap = localStorage.getItem('already played');
     if (!ap) {
-        showAlert('finish the rumble first');
+        showAlert('finish the game');
         return;
     } else {
         showAlert('copied to clipboard');
