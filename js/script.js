@@ -158,7 +158,7 @@ function updateStats() {
 
     if (row === 6) {
         for (let i = 25; i < 30; i++) {
-            if (!tiles[i].dataset.state === 'correct') {
+            if (!(tiles[i].dataset.state === 'correct')) {
                 row = 0
                 break;
             }
