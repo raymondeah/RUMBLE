@@ -235,7 +235,7 @@ const statsIcon = document.querySelector('.stats');
 const instrX = document.querySelector('.xbuttonhelp');
 const settingsX = document.querySelector('.xbuttonsettings');
 const statsX = document.querySelector('.xbuttonstats');
-shareDiv = document.querySelector('.share');
+const shareDiv = document.querySelector('.share');
 // shareText = document.querySelector('.share-text')
 // shareIcon = document.querySelector('.share-icon')
 
