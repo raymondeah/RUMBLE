@@ -235,7 +235,7 @@ const statsIcon = document.querySelector('.stats');
 const instrX = document.querySelector('.xbuttonhelp');
 const settingsX = document.querySelector('.xbuttonsettings');
 const statsX = document.querySelector('.xbuttonstats');
-// shareDiv = document.querySelector('.share');
+shareDiv = document.querySelector('.share');
 // shareText = document.querySelector('.share-text')
 // shareIcon = document.querySelector('.share-icon')
 
@@ -247,7 +247,7 @@ instrX.addEventListener("click", hideHelp)
 settingsX.addEventListener("click", hideSettings)
 statsX.addEventListener("click", hideStats)
 
-// shareDiv.addEventListener('click', share);
+shareDiv.addEventListener('click', share);
 // shareText.addEventListener('click', share);
 // shareIcon.addEventListener('click', share);
 

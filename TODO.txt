@@ -1,7 +1,8 @@
 REQUIRED:
 -checkmark styling
 -wordbank
--easy mode
+-easy mode (limit to start of game only)
+-share button doesn't work
 
 NICE TO HAVE:
 -hard mode
