@@ -1,5 +1,4 @@
 REQUIRED:
--stats page (bar graph coloring)
 -checkmark styling
 -wordbank
 -easy mode

@@ -532,7 +532,7 @@ body {
     margin-top: 5px;
 }
 
-.bar[data-state="solved"] {
+.bar-solved {
     background-color: var(--green) !important;
 }
 

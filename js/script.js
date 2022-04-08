@@ -1,68 +1,6 @@
-const targetWords = [
-    "falco",
-    "sasha",
-    "conny",
-    "pieck",
-    "hange"
-];
+import { nytTargetWords, nytWordBank, targetWords, wordBankAot } from "./words.js"
+let wordBank = wordBankAot;
 
-const wordBank = [
-    "armin",
-    "hange",
-    "conny",
-    "varis",
-    "sasha",
-    "braus",
-    "lobov",
-    "erwin",
-    "smith",
-    "marlo",
-    "tomas",
-    "klaus",
-    "lauda",
-    "keiji",
-    "lynne",
-    "petra",
-    "moses",
-    "waltz",
-    "hitch",
-    "boris",
-    "roger",
-    "kenny",
-    "caven",
-    "duran",
-    "pyxis",
-    "keith",
-    "marco",
-    "franz",
-    "kefka",
-    "carlo",
-    "calvi",
-    "annie",
-    "pieck",
-    "falco",
-    "grice",
-    "porco",
-    "zofia",
-    "xaver",
-    "gross",
-    "reiss",
-    "fritz",
-    "tybur",
-    "willy",
-    "maria",
-    "ellie",
-    "artur",
-    "carly",
-    "ralph",
-    "sunny",
-    "carla",
-    "floch",
-    "beane",
-    "helos",
-
-    "titan"
-];
 //localStorage.clear()
 // *** DARK MODE *** //
 const colorSwitch = document.querySelector('.color-switch');
@@ -94,6 +32,32 @@ colorSwitch.addEventListener('change', switchTheme, false);
 
 // *** DARK MODE *** //
 
+const easyModeSwitch = document.querySelector('.easy');
+
+const currentMode = localStorage.getItem('easy');
+if (currentMode) {
+    document.documentElement.setAttribute('data-theme', currentTheme);
+  
+    if (currentMode === 'Y') {
+        easyModeSwitch.checked = true;
+        wordBank = wordBankAot + nytWordBank + nytTargetWords;
+    } // else {
+    //     colorSwitch.checked = false;
+    // }
+}
+
+function toggleEasy(e) {
+    if (e.target.checked) {
+        wordBank = wordBankAot + nytWordBank + nytTargetWords;
+        localStorage.setItem('easy', 'Y');
+    } else {
+        wordBank = wordBankAot;
+        localStorage.setItem('easy', 'N');
+    }
+}
+
+easyModeSwitch.addEventListener('change', toggleEasy, false);
+
 const WORD_LENGTH = 5;
 const FLIP_ANIMATION_DURATION = 500;
 const DANCE_ANIMATION_DURATION = 500;
@@ -117,6 +81,21 @@ const expireDate = localStorage.getItem('expire date');
 const guessGridPrev = localStorage.getItem('grid');
 const keyboardPrev = localStorage.getItem('keyboard');
 const alreadyPlayed = localStorage.getItem('already played');
+
+
+if (expireDate && Date.parse(expireDate) < Date.now()) {
+    localStorage.removeItem('grid');
+    localStorage.removeItem('keyboard');
+    localStorage.removeItem('already played');
+} else {
+    if (guessGridPrev) {
+        hideHelp(0);
+        guessGrid.innerHTML = guessGridPrev;
+    }
+    if (keyboardPrev) {
+        keyboard.innerHTML = keyboardPrev;
+    }
+}
 
 // STATS PAGE!!! //
 
@@ -171,28 +150,34 @@ function updateStats() {
         // bars[i].style = 'width: ' + Math.max(percentage, 5) + '%;'
         bars[i].style = 'width: max(25px, ' + percentage + '%)';
     }
-    
+
+    // ------------------------ //
+
+    const tiles = document.querySelectorAll('[data-state]');
+    let row = tiles.length / WORD_LENGTH;
+
+    if (row === 6) {
+        for (let i = 25; i < 30; i++) {
+            if (!tiles[i].dataset.state === 'correct') {
+                row = 0
+                break;
+            }
+        }
+    }
+
+    if (row > 0) {
+        bars[row-1].classList.add('bar-solved');
+    }
+
+    if (row > 0 && expireDate && Date.parse(expireDate) < Date.now()) {
+        bars[row-1].classList.remove('bar-solved');
+    }
+
+    // ------------------------ //
 }
 
 updateStats();
 // STATS PAGE!!! //
-
-if (expireDate && Date.parse(expireDate) < Date.now()) {
-    localStorage.removeItem('grid');
-    localStorage.removeItem('keyboard');
-    localStorage.removeItem('already played');
-} else {
-    if (guessGridPrev) {
-        hideHelp(0);
-        guessGrid.innerHTML = guessGridPrev;
-    }
-    if (keyboardPrev) {
-        keyboard.innerHTML = keyboardPrev;
-    }
-}
-//localStorage.setItem('guess grid', guessGrid.innerHTML);
-//localStorage.setItem('keyboard', keyboard.innerHTML);
-//let targetWord = targetWords[0];
 
 // DATE RESET!!! //
 
@@ -226,7 +211,7 @@ function countdown() {
     m = (m < 10) ? '0' + m : m;
     s = (s < 10) ? '0' + s : s;
 
-    c = h + ':' + m + ':' + s;
+    const c = h + ':' + m + ':' + s;
 
     //ticker = document.querySelector()
     document.querySelector('.ticker').textContent = c
@@ -243,6 +228,28 @@ if (ap) {
     startInteraction();
 }
 
+const instrIcon = document.querySelector('.instr');
+const settingsIcon = document.querySelector('.settings');
+const statsIcon = document.querySelector('.stats');
+
+const instrX = document.querySelector('.xbuttonhelp');
+const settingsX = document.querySelector('.xbuttonsettings');
+const statsX = document.querySelector('.xbuttonstats');
+// shareDiv = document.querySelector('.share');
+// shareText = document.querySelector('.share-text')
+// shareIcon = document.querySelector('.share-icon')
+
+instrIcon.addEventListener("click", showHelp);
+statsIcon.addEventListener("click", showStats);
+settingsIcon.addEventListener("click", showSettings);
+
+instrX.addEventListener("click", hideHelp)
+settingsX.addEventListener("click", hideSettings)
+statsX.addEventListener("click", hideStats)
+
+// shareDiv.addEventListener('click', share);
+// shareText.addEventListener('click', share);
+// shareIcon.addEventListener('click', share);
 
 function startInteraction() {
     document.addEventListener("click", handleMouseClick);
@@ -265,7 +272,7 @@ function handleMouseClick(e) {
         return;
     }
 
-    if (e.target.matches("[data-delete]")) {
+    if (e.target.matches("[data-delete]") || e.target.matches('.del')) {
         deleteKey();
         return;
     }
@@ -578,7 +585,7 @@ function showHelp() {
     box.style.animationFillMode = 'forwards';
 }
 
-function hideHelp(duration) {
+function hideHelp(duration=250) {
     const box = document.getElementById("help");
     box.style.animationName = 'hide'
     box.style.animationDuration = duration + 'ms';

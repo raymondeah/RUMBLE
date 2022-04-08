@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Attack on Titan/AOT/Shingeki no Kyojin themed Wordle. A new RUMBLE will be available each day!">
     <link rel="stylesheet" href="/css/stylesheet.css">
-    <script src="/js/script.js" defer></script>
+    <script type="module" src="/js/words.js"></script>
+    <script type="module" src="/js/script.js" defer></script>
     <link rel="apple-touch-icon" sizes="180x180" href="icons/favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="icons/favicon/favicon-16x16.png">
@@ -27,17 +28,14 @@
 </head>
 <body>
     <div class="head">
-        <!-- <input type="button" class="instr" value="?" onClick="showHelp();"></input> -->
         <div class="head-left">
-            <img src="/icons/qmark.svg" class="instr" onClick="showHelp();">
+            <img src="/icons/qmark.svg" class="instr">
         </div>
         <h1 class="title">Rumble</h1>
         <div class="head-right">
-            <!-- <input type="button" class="stats" value="S" onClick="showStats();"></input> -->
-            <img src="/icons/stats.svg" class="stats" onClick="showStats();">
-            <img src="/icons/settings.svg" class="settings" onClick="showSettings();">
+            <img src="/icons/stats.svg" class="stats">
+            <img src="/icons/settings.svg" class="settings">
         </div>
-        <!-- <input type="button" class="settings" value="S" onClick="showSettings();"></input> -->
     </div>
     <div data-alert-container class="alert-container">
         
@@ -107,14 +105,14 @@
         <button class="key" data-key="N">N</button>
         <button class="key" data-key="M">M</button>
         <button data-delete class="key large">
-            <img src="/icons/del.svg" class="del" onClick="deleteKey();">
+            <img src="/icons/del.svg" class="del">
         </button>
     </div>
 
     <!-- HELP -->
     <div id="help" class="sidemenu">
         <div class="menucontents">
-            <input type="button" class="xbuttonsidemenu" value="X" onClick="hideHelp(250);"></input>
+            <input type="button" class="xbuttonsidemenu xbuttonhelp" value="X"></input>
             <div>
                 <H4 class="instructions-header">HOW TO PLAY</H4>
             </div>
@@ -171,7 +169,7 @@
     <!-- SETTINGS -->
     <div id="settings" class="sidemenux">
         <div class="menucontents">
-            <input type="button" class="xbuttonsidemenu" value="X" onClick="hideSettings();"></input>
+            <input type="button" class="xbuttonsidemenu xbuttonsettings" value="X"></input>
             <!-- <div> -->
                 <H4 class="instructions-header">SETTINGS</H4>
 
@@ -195,7 +193,7 @@
                     
                     <div>
                         <label class="switch">
-                            <input type="checkbox">
+                            <input type="checkbox" class="easy">
                             <span class="slider round"></span>
                         </label>
                     </div>
@@ -247,7 +245,7 @@
         <div class="popupmenucontents">
             <br>
             
-            <input type="button" class="xbuttonstats" value="X" onClick="hideStats();"></input>
+            <input type="button" class="xbuttonstats" value="X"></input>
             <!-- <div> -->
             <H4 class="instructions-header">STATISTICS</H4>
             
