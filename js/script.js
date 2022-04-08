@@ -644,7 +644,7 @@ function getShareableResults() {
         }
     }
 
-    result = 'RUMBLE ' + (currentDay+1) + ' ' + row + '/6' + '\n';
+    let result = 'RUMBLE ' + (currentDay+1) + ' ' + row + '/6' + '\n';
     for(let i = 0; i < tiles.length; i++) {
         if (i % 5 == 0) {
             result += '\n'
