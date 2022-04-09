@@ -3,7 +3,16 @@ export const targetWords = [
     "sasha",
     "conny",
     "pieck",
-    "hange"
+    "hange",
+    "kenny",
+    "armin",
+    "keith",
+    "erwin",
+    "tybur",
+    "marco",
+    "annie",
+    "floch",
+    "reiss"
 ];
 
 export const wordBankAot = [
