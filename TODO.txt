@@ -1,8 +1,6 @@
 REQUIRED:
--checkmark styling
 -wordbank
--easy mode (limit to start of game only)
--share button doesn't work
+-streak resets on missed day
 
 NICE TO HAVE:
 -hard mode
@@ -10,6 +8,7 @@ NICE TO HAVE:
 -tile shaking (entire row should shake)
 -new menu transitions (slide up/down while fading in/out)
 -reanimate tiles on page refresh
+-typing animation
 
 -documentation/refactoring
 -testing

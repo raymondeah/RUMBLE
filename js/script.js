@@ -1,9 +1,10 @@
 import { nytTargetWords, nytWordBank, targetWords, wordBankAot } from "./words.js"
 let wordBank = wordBankAot;
 
-//localStorage.clear()
+localStorage.clear()
 // *** DARK MODE *** //
-const colorSwitch = document.querySelector('.color-switch');
+//const colorSwitch = document.querySelector('.color-switch');
+// const colorSwitch = document.querySelector('.toggle-switch');
 const colorCheck = document.querySelector('.color-check')
 colorCheck.checked = true;
 const currentTheme = localStorage.getItem('theme');
@@ -28,7 +29,8 @@ function switchTheme(e) {
     }    
 }
 
-colorSwitch.addEventListener('change', switchTheme, false);
+// colorSwitch.addEventListener('change', switchTheme, false);
+colorCheck.addEventListener('change', switchTheme, false);
 
 // *** DARK MODE *** //
 
@@ -69,7 +71,7 @@ const puzzleNumber = document
     .querySelector(".menucontents")
     .querySelector(".number");
 
-const startingDate = new Date(2022, 3, 4);
+const startingDate = new Date(2022, 3, 11);
 const offsetDate = Date.now() - startingDate;
 const currentDay = Math.max(0, Math.floor(offsetDate / 1000 / 60 / 60 / 24));
 const targetWord = targetWords[currentDay];
@@ -159,7 +161,7 @@ function updateStats() {
     if (row === 6) {
         for (let i = 25; i < 30; i++) {
             if (!(tiles[i].dataset.state === 'correct')) {
-                row = 0
+                row = 0;
                 break;
             }
         }
