@@ -1,48 +1,9 @@
 import { nytTargetWords, nytWordBank, targetWords, wordBankAot } from "./words.js"
-let wordBank = wordBankAot;
-
-countdown();
-
-//localStorage.clear()
-// *** DARK MODE *** //
-//const colorSwitch = document.querySelector('.color-switch');
-// const colorSwitch = document.querySelector('.toggle-switch');
-const colorCheck = document.querySelector('.color-check')
-colorCheck.checked = true;
-const currentTheme = localStorage.getItem('theme');
-if (currentTheme) {
-    document.documentElement.setAttribute('data-theme', currentTheme);
-  
-    if (currentTheme === 'light') {
-        colorCheck.checked = false;
-    } // else {
-    //     colorSwitch.checked = false;
-    // }
-}
-// colorSwitch.addEventListener('change', switchTheme, false);
-colorCheck.addEventListener('change', switchTheme, false);
-
-// *** DARK MODE *** //
-
-const easyModeSwitch = document.querySelector('.easy');
-
-const currentMode = localStorage.getItem('easy');
-if (currentMode) {
-    document.documentElement.setAttribute('data-theme', currentTheme);
-  
-    if (currentMode === 'Y') {
-        easyModeSwitch.checked = true;
-        wordBank = wordBankAot + nytWordBank + nytTargetWords;
-    } // else {
-    //     colorSwitch.checked = false;
-    // }
-}
-
-easyModeSwitch.addEventListener('change', toggleEasy, false);
 
 const WORD_LENGTH = 5;
 const FLIP_ANIMATION_DURATION = 500;
 const DANCE_ANIMATION_DURATION = 500;
+
 const keyboard = document.querySelector("[data-keyboard]");
 const alertContainer = document.querySelector("[data-alert-container]");
 const guessGrid = document.querySelector("[data-guess-grid]");
@@ -58,11 +19,36 @@ const targetWord = targetWords[currentDay];
 
 puzzleNumber.textContent = '#' + (currentDay+1);
 
+countdown();
+addListeners();
+
+// *** DARK MODE *** //
+const colorCheck = document.querySelector('.color-check')
+colorCheck.checked = true;
+const currentTheme = localStorage.getItem('theme');
+if (currentTheme) {
+    document.documentElement.setAttribute('data-theme', currentTheme);
+  
+    if (currentTheme === 'light') {
+        colorCheck.checked = false;
+    } 
+}
+
+// *** DARK MODE *** //
+
+let wordBank = wordBankAot;
+const easyModeSwitch = document.querySelector('.easy');
+const currentMode = localStorage.getItem('easy');
+if (currentMode && currentMode === 'Y') {
+    easyModeSwitch.checked = true;
+    wordBank = wordBankAot + nytWordBank + nytTargetWords;
+}
+
+
 //localStorage.clear();
 const expireDate = localStorage.getItem('expire date');
 const guessGridPrev = localStorage.getItem('grid');
 const keyboardPrev = localStorage.getItem('keyboard');
-const alreadyPlayed = localStorage.getItem('already played');
 
 if (expireDate && Date.parse(expireDate) < Date.now()) {
     localStorage.removeItem('grid');
@@ -83,18 +69,7 @@ if (expireDate && Date.parse(expireDate) < Date.now()) {
     }
 }
 
-// STATS PAGE!!! //
-
 // first time playing: need to initialize local storage attributes
-const today = new Date();
-// if (today.getDay === startingDate.getDay && today.getFullYear === startingDate.getFullYear && alreadyPlayed === null) {
-//     localStorage.setItem('games played', 0);
-//     localStorage.setItem('games won', 0);
-//     localStorage.setItem('current streak', 0);
-//     localStorage.setItem('max streak', 0);
-//     localStorage.setItem('guess distribution', JSON.stringify([0, 0, 0, 0, 0, 0]))
-// } 
-
 const gamesPlayed = parseInt(localStorage.getItem('games played'))
 if (!gamesPlayed) {
     localStorage.setItem('games played', 0);
@@ -105,7 +80,6 @@ if (!gamesPlayed) {
 }
 
 updateStats();
-// STATS PAGE!!! //
 
 // DATE RESET!!! //
 
@@ -117,8 +91,27 @@ tomorrow.setSeconds(0);
 localStorage.setItem('expire date', tomorrow);
 
 // DATE RESET!!! //
+function addListeners() {
+    const instrIcon = document.querySelector('.instr');
+    const settingsIcon = document.querySelector('.settings');
+    const statsIcon = document.querySelector('.stats');
+    const instrX = document.querySelector('.xbuttonhelp');
+    const settingsX = document.querySelector('.xbuttonsettings');
+    const statsX = document.querySelector('.xbuttonstats');
+    const shareDiv = document.querySelector('.share');
+    const easyModeSwitch = document.querySelector('.easy');
+    const colorCheck = document.querySelector('.color-check')
 
-
+    instrIcon.addEventListener("click", showHelp);
+    statsIcon.addEventListener("click", showStats);
+    settingsIcon.addEventListener("click", showSettings);
+    instrX.addEventListener("click", hideHelp)
+    settingsX.addEventListener("click", hideSettings)
+    statsX.addEventListener("click", hideStats);
+    shareDiv.addEventListener('click', share);
+    easyModeSwitch.addEventListener('change', toggleEasy, false);
+    colorCheck.addEventListener('change', toggleTheme, false);
+}
 
 const ap = localStorage.getItem('already played');
 if (ap) {
@@ -127,29 +120,6 @@ if (ap) {
 } else {
     startInteraction();
 }
-
-const instrIcon = document.querySelector('.instr');
-const settingsIcon = document.querySelector('.settings');
-const statsIcon = document.querySelector('.stats');
-
-const instrX = document.querySelector('.xbuttonhelp');
-const settingsX = document.querySelector('.xbuttonsettings');
-const statsX = document.querySelector('.xbuttonstats');
-const shareDiv = document.querySelector('.share');
-// shareText = document.querySelector('.share-text')
-// shareIcon = document.querySelector('.share-icon')
-
-instrIcon.addEventListener("click", showHelp);
-statsIcon.addEventListener("click", showStats);
-settingsIcon.addEventListener("click", showSettings);
-
-instrX.addEventListener("click", hideHelp)
-settingsX.addEventListener("click", hideSettings)
-statsX.addEventListener("click", hideStats)
-
-shareDiv.addEventListener('click', share);
-// shareText.addEventListener('click', share);
-// shareIcon.addEventListener('click', share);
 
 function startInteraction() {
     document.addEventListener("click", handleMouseClick);
@@ -574,7 +544,7 @@ function share() {
     navigator.clipboard.writeText(results);
 }
 
-function switchTheme(e) {
+function toggleTheme(e) {
     if (e.target.checked) {
         document.documentElement.setAttribute('data-theme', 'dark');
         localStorage.setItem('theme', 'dark');
