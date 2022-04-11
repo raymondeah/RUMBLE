@@ -1,7 +1,7 @@
 import { nytTargetWords, nytWordBank, targetWords, wordBankAot } from "./words.js"
 let wordBank = wordBankAot;
 
-localStorage.clear()
+//localStorage.clear()
 // *** DARK MODE *** //
 //const colorSwitch = document.querySelector('.color-switch');
 // const colorSwitch = document.querySelector('.toggle-switch');
