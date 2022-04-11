@@ -1,6 +1,8 @@
 import { nytTargetWords, nytWordBank, targetWords, wordBankAot } from "./words.js"
 let wordBank = wordBankAot;
 
+countdown();
+
 //localStorage.clear()
 // *** DARK MODE *** //
 //const colorSwitch = document.querySelector('.color-switch');
@@ -17,18 +19,6 @@ if (currentTheme) {
     //     colorSwitch.checked = false;
     // }
 }
-
-function switchTheme(e) {
-    if (e.target.checked) {
-        document.documentElement.setAttribute('data-theme', 'dark');
-        localStorage.setItem('theme', 'dark');
-    }
-    else {        
-        document.documentElement.setAttribute('data-theme', 'light');
-        localStorage.setItem('theme', 'light');
-    }    
-}
-
 // colorSwitch.addEventListener('change', switchTheme, false);
 colorCheck.addEventListener('change', switchTheme, false);
 
@@ -46,16 +36,6 @@ if (currentMode) {
     } // else {
     //     colorSwitch.checked = false;
     // }
-}
-
-function toggleEasy(e) {
-    if (e.target.checked) {
-        wordBank = wordBankAot + nytWordBank + nytTargetWords;
-        localStorage.setItem('easy', 'Y');
-    } else {
-        wordBank = wordBankAot;
-        localStorage.setItem('easy', 'N');
-    }
 }
 
 easyModeSwitch.addEventListener('change', toggleEasy, false);
@@ -84,11 +64,14 @@ const guessGridPrev = localStorage.getItem('grid');
 const keyboardPrev = localStorage.getItem('keyboard');
 const alreadyPlayed = localStorage.getItem('already played');
 
-
 if (expireDate && Date.parse(expireDate) < Date.now()) {
     localStorage.removeItem('grid');
     localStorage.removeItem('keyboard');
     localStorage.removeItem('already played');
+    const bars = document.querySelectorAll('.bar');
+    for (let i = 0; i < bars.length; i++) {
+        bars[i].classList.remove('bar-solved')
+    }
 } else {
     if (guessGridPrev) {
         hideHelp(0);
@@ -120,64 +103,6 @@ if (!gamesPlayed) {
     localStorage.setItem('guess distribution', JSON.stringify([0, 0, 0, 0, 0, 0]))
 }
 
-function updateStats() {
-    const gamesPlayed = parseInt(localStorage.getItem('games played'));
-    const gamesWon = parseInt(localStorage.getItem('games won'));
-    const currStreak = parseInt(localStorage.getItem('current streak'));
-    const maxStreak = parseInt(localStorage.getItem('max streak'));
-
-    const gamesPlayedH = document.querySelector('.played-num');
-    const winPercent = document.querySelector('.win-percent-num');
-    const currStreakH = document.querySelector('.curr-streak-num');
-    const maxStreakH = document.querySelector('.max-streak-num')
-
-    gamesPlayedH.textContent = gamesPlayed;
-    if (gamesPlayed === 0) {
-        winPercent.textContent = '0'
-    } else {
-        winPercent.textContent = Math.round(((gamesWon / gamesPlayed) * 100))
-    }
-    currStreakH.textContent = currStreak;
-    maxStreakH.textContent = maxStreak;
-
-    const bars = document.querySelectorAll('.bar');
-    const text = document.querySelectorAll('.bar-text');
-    const distr = JSON.parse(localStorage.getItem('guess distribution'))
-    const full_bar = Math.max(...distr)
-
-    for(let i = 0; i < bars.length; i++) {
-        text[i].textContent = distr[i];
-
-        const percentage = (distr[i] / Math.max(1, full_bar)) * 100
-        // bars[i].style = 'width: ' + Math.max(percentage, 5) + '%;'
-        bars[i].style = 'width: max(25px, ' + percentage + '%)';
-    }
-
-    // ------------------------ //
-
-    const tiles = document.querySelectorAll('[data-state]');
-    let row = tiles.length / WORD_LENGTH;
-
-    if (row === 6) {
-        for (let i = 25; i < 30; i++) {
-            if (!(tiles[i].dataset.state === 'correct')) {
-                row = 0;
-                break;
-            }
-        }
-    }
-
-    if (row > 0) {
-        bars[row-1].classList.add('bar-solved');
-    }
-
-    if (row > 0 && expireDate && Date.parse(expireDate) < Date.now()) {
-        bars[row-1].classList.remove('bar-solved');
-    }
-
-    // ------------------------ //
-}
-
 updateStats();
 // STATS PAGE!!! //
 
@@ -192,35 +117,7 @@ localStorage.setItem('expire date', tomorrow);
 
 // DATE RESET!!! //
 
-function countdown() {
-    let now = new Date();
-    let resetDate = new Date();
-    resetDate.setDate(now.getDate() + 1)
-    resetDate.setHours(0);
-    resetDate.setMinutes(0);
-    resetDate.setSeconds(0);
 
-    let remTime = resetDate - now;
-    let s = Math.floor(remTime / 1000);
-    let m = Math.floor(s / 60);
-    let h = Math.floor(m / 60);
-
-    h %= 24;
-    m %= 60;
-    s %= 60;
-
-    h = (h < 10) ? '0' + h : h;
-    m = (m < 10) ? '0' + m : m;
-    s = (s < 10) ? '0' + s : s;
-
-    const c = h + ':' + m + ':' + s;
-
-    //ticker = document.querySelector()
-    document.querySelector('.ticker').textContent = c
-    setTimeout(countdown, 1000);
-}
-
-countdown()
 
 const ap = localStorage.getItem('already played');
 if (ap) {
@@ -674,4 +571,107 @@ function share() {
     }
     const results = getShareableResults()
     navigator.clipboard.writeText(results);
+}
+
+function switchTheme(e) {
+    if (e.target.checked) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        localStorage.setItem('theme', 'dark');
+    }
+    else {        
+        document.documentElement.setAttribute('data-theme', 'light');
+        localStorage.setItem('theme', 'light');
+    }    
+}
+
+function toggleEasy(e) {
+    if (e.target.checked) {
+        wordBank = wordBankAot + nytWordBank + nytTargetWords;
+        localStorage.setItem('easy', 'Y');
+    } else {
+        wordBank = wordBankAot;
+        localStorage.setItem('easy', 'N');
+    }
+}
+
+function updateStats() {
+    const gamesPlayed = parseInt(localStorage.getItem('games played'));
+    const gamesWon = parseInt(localStorage.getItem('games won'));
+    const currStreak = parseInt(localStorage.getItem('current streak'));
+    const maxStreak = parseInt(localStorage.getItem('max streak'));
+
+    const gamesPlayedH = document.querySelector('.played-num');
+    const winPercent = document.querySelector('.win-percent-num');
+    const currStreakH = document.querySelector('.curr-streak-num');
+    const maxStreakH = document.querySelector('.max-streak-num')
+
+    gamesPlayedH.textContent = gamesPlayed;
+    if (gamesPlayed === 0) {
+        winPercent.textContent = '0'
+    } else {
+        winPercent.textContent = Math.round(((gamesWon / gamesPlayed) * 100))
+    }
+    currStreakH.textContent = currStreak;
+    maxStreakH.textContent = maxStreak;
+
+    const bars = document.querySelectorAll('.bar');
+    const text = document.querySelectorAll('.bar-text');
+    const distr = JSON.parse(localStorage.getItem('guess distribution'))
+    const full_bar = Math.max(...distr)
+
+    for(let i = 0; i < bars.length; i++) {
+        text[i].textContent = distr[i];
+
+        const percentage = (distr[i] / Math.max(1, full_bar)) * 100
+        // bars[i].style = 'width: ' + Math.max(percentage, 5) + '%;'
+        bars[i].style = 'width: max(25px, ' + percentage + '%)';
+    }
+
+    // ------------------------ //
+
+    const tiles = document.querySelectorAll('[data-state]');
+    let row = tiles.length / WORD_LENGTH;
+
+    if (row === 6) {
+        for (let i = 25; i < 30; i++) {
+            if (!(tiles[i].dataset.state === 'correct')) {
+                row = 0;
+                break;
+            }
+        }
+    }
+
+    if (row > 0) {
+        bars[row-1].classList.add('bar-solved');
+    }
+
+    // ------------------------ //
+}
+
+function countdown() {
+    let now = new Date();
+    let resetDate = new Date();
+    resetDate.setDate(now.getDate() + 1)
+    resetDate.setHours(0);
+    resetDate.setMinutes(0);
+    resetDate.setSeconds(0);
+
+    let remTime = resetDate - now;
+    let s = Math.floor(remTime / 1000);
+    let m = Math.floor(s / 60);
+    let h = Math.floor(m / 60);
+
+    h %= 24;
+    m %= 60;
+    s %= 60;
+
+    h = (h < 10) ? '0' + h : h;
+    m = (m < 10) ? '0' + m : m;
+    s = (s < 10) ? '0' + s : s;
+
+    const c = h + ':' + m + ':' + s;
+
+    //ticker = document.querySelector()
+    document.querySelector('.ticker').textContent = c
+    setTimeout(countdown, 1000);
 }
