@@ -74,7 +74,8 @@ if (expireDate && Date.parse(expireDate) < Date.now()) {
     }
 } else {
     if (guessGridPrev) {
-        hideHelp(0);
+        const box = document.getElementById("help");
+        box.style.visibility = 'hidden';
         guessGrid.innerHTML = guessGridPrev;
     }
     if (keyboardPrev) {
@@ -484,10 +485,10 @@ function showHelp() {
     box.style.animationFillMode = 'forwards';
 }
 
-function hideHelp(duration=250) {
+function hideHelp() {
     const box = document.getElementById("help");
     box.style.animationName = 'hide'
-    box.style.animationDuration = duration + 'ms';
+    box.style.animationDuration = '250ms';
     box.style.animationTimingFunction = 'ease-out'
     box.style.animationFillMode = 'forwards';
 }
