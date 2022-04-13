@@ -1,6 +1,5 @@
 REQUIRED:
 -wordbank
--streak resets on missed day
 
 NICE TO HAVE:
 -hard mode
