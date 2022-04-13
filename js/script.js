@@ -1,8 +1,8 @@
 import { nytTargetWords, nytWordBank, targetWords, wordBankAot } from "./words.js"
-
+localStorage.clear();
 const WORD_LENGTH = 5;
-const FLIP_ANIMATION_DURATION = 500;
-const DANCE_ANIMATION_DURATION = 500;
+const FLIP_ANIMATION_DURATION = 600;
+const DANCE_ANIMATION_DURATION = 600;
 
 const keyboard = document.querySelector("[data-keyboard]");
 const alertContainer = document.querySelector("[data-alert-container]");
