@@ -1,5 +1,5 @@
 import { nytTargetWords, nytWordBank, targetWords, wordBankAot } from "./words.js"
-
+localStorage.clear();
 const WORD_LENGTH = 5;
 const FLIP_ANIMATION_DURATION = 500;
 const DANCE_ANIMATION_DURATION = 500;
@@ -7,12 +7,9 @@ const DANCE_ANIMATION_DURATION = 500;
 const keyboard = document.querySelector("[data-keyboard]");
 const alertContainer = document.querySelector("[data-alert-container]");
 const guessGrid = document.querySelector("[data-guess-grid]");
-const puzzleNumber = document
-    .querySelector("#settings")
-    .querySelector(".menucontents")
-    .querySelector(".number");
+const puzzleNumber = document.querySelector("#settings").querySelector(".menucontents").querySelector(".number");
 
-const startingDate = new Date(2022, 3, 11);
+const startingDate = new Date(2022, 3, 13);
 const offsetDate = Date.now() - startingDate;
 const currentDay = Math.max(0, Math.floor(offsetDate / 1000 / 60 / 60 / 24));
 const targetWord = targetWords[currentDay];
@@ -336,6 +333,7 @@ function checkWinLose(guess, tiles) {
         
         stopInteraction();
         localStorage.setItem('already played', 'Y');
+        localStorage.setItem('last puzzle played', currentDay);
         localStorage.setItem('games played', parseInt(localStorage.getItem('games played')) + 1);
         localStorage.setItem('games won', parseInt(localStorage.getItem('games won')) + 1);
         localStorage.setItem('current streak', parseInt(localStorage.getItem('current streak')) + 1);
@@ -357,6 +355,7 @@ function checkWinLose(guess, tiles) {
         showAlert(targetWord.toUpperCase(), 3000);
         
         localStorage.setItem('already played', 'Y');
+        localStorage.setItem('last puzzle played', currentDay);
         localStorage.setItem('current streak', 0);
         localStorage.setItem('games played',parseInt(localStorage.getItem('games played')) + 1);
         updateStats();
@@ -507,11 +506,12 @@ function updateStats() {
     const gamesWon = parseInt(localStorage.getItem('games won'));
     const currStreak = parseInt(localStorage.getItem('current streak'));
     const maxStreak = parseInt(localStorage.getItem('max streak'));
+    const lastPuzzle = parseInt(localStorage.getItem('last puzzle played'));
 
     const gamesPlayedH = document.querySelector('.played-num');
     const winPercent = document.querySelector('.win-percent-num');
     const currStreakH = document.querySelector('.curr-streak-num');
-    const maxStreakH = document.querySelector('.max-streak-num')
+    const maxStreakH = document.querySelector('.max-streak-num');
 
     gamesPlayedH.textContent = gamesPlayed;
     if (gamesPlayed === 0) {
@@ -519,7 +519,14 @@ function updateStats() {
     } else {
         winPercent.textContent = Math.round(((gamesWon / gamesPlayed) * 100))
     }
-    currStreakH.textContent = currStreak;
+
+    if (currentDay - lastPuzzle > 1) {
+        currStreakH.textContent = '0'
+        localStorage.setItem('current streak', 0)
+    } else {
+        currStreakH.textContent = currStreak;
+    }
+    
     maxStreakH.textContent = maxStreak;
 
     const bars = document.querySelectorAll('.bar');
