@@ -2,10 +2,10 @@ REQUIRED:
 -wordbank
 
 NICE TO HAVE:
+-new menu transitions (slide up/down while fading in/out)
+-tile shaking (entire row should shake)
 -hard mode
 -high contrast mode
--tile shaking (entire row should shake)
--new menu transitions (slide up/down while fading in/out)
 -reanimate tiles on page refresh
 -typing animation
 
