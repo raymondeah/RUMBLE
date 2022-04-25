@@ -12,7 +12,15 @@ export const targetWords = [
     "marco",
     "annie",
     "floch",
-    "reiss"
+    "reiss",
+    "ocean",
+    "beane",
+    "scout",
+    "enemy",
+    "serum",
+    "cadet",
+    "armor",
+    "blade"
 ];
 
 export const wordBankAot = ['annie', 'armin', 'armor', 'artur', 'beach', 'beane', 'beast', 'birds', 'blade', 'blood', 'boris', 'braun', 'braus', 'bread', 'cabin', 'cadet', 'calvi', 'carla', 'carlo', 'carly', 'castle', 'caven', 'chain', 'conny', 'corps', 'cruel', 'death', 'devil', 'dream', 'duran', 'eldia', 'ellie', 'enemy', 'erwin', 'falco', 'fight', 'flare', 'floch', 'franz', 'fritz', 'green', 'grice', 'gross', 'guard', 'hange', 'heart', 'helos', 'hitch', 'horse', 'human', 'kefka', 'keiji', 'keith', 'kenny', 'klaus', 'lauda', 'light', 'lobov', 'lynne', 'mappa', 'marco', 'maria', 'marlo', 'medal', 'miche', 'moses', 'ocean', 'order', 'paths', 'peace', 'petra', 'pieck', 'porco', 'power', 'pyxis', 'queen', 'ralph', 'reiss', 'rifle', 'roger', 'royal', 'sasha', 'scarf', 'scout', 'serum', 'smith', 'spear', 'spine', 'squad', 'steam', 'sunny', 'sword', 'titan', 'tomas', 'trost', 'tybur', 'varis', 'walls', 'waltz', 'willy', 'world', 'xaver', 'zofia'];
