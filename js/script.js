@@ -9,7 +9,7 @@ const alertContainer = document.querySelector("[data-alert-container]");
 const guessGrid = document.querySelector("[data-guess-grid]");
 const puzzleNumber = document.querySelector("#settings").querySelector(".menucontents").querySelector(".number");
 
-const startingDate = new Date(2022, 4, 27);
+const startingDate = new Date(2022, 5, 22);
 const offsetDate = Date.now() - startingDate;
 const currentDay = Math.max(0, Math.floor(offsetDate / 1000 / 60 / 60 / 24));
 const targetWord = targetWords[currentDay];
